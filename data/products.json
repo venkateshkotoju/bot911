@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "Cobb Accessport V3",
+    "keywords": ["cobb accessport", "accessport", "ecu tuner"],
+    "link": "https://amzn.to/your-cobb-link",
+    "brand": "Cobb",
+    "image": "https://m.media-amazon.com/images/I/71oY7K3RfaL._AC_SL1500_.jpg",
+    "category": "ECU"
+  },
+  {
+    "name": "Fabspeed Maxflo Exhaust",
+    "keywords": ["fabspeed", "fabspeed exhaust", "performance exhaust"],
+    "link": "https://amzn.to/your-fabspeed-link",
+    "brand": "Fabspeed",
+    "image": "https://m.media-amazon.com/images/I/81ClQH9KgfL._AC_SL1500_.jpg",
+    "category": "Exhaust"
+  },
+  {
+    "name": "Bilstein B16 Coilovers",
+    "keywords": ["bilstein", "coilovers", "suspension"],
+    "link": "https://amzn.to/your-bilstein-link",
+    "brand": "Bilstein",
+    "image": "https://m.media-amazon.com/images/I/81Zk2RL7KXL._AC_SL1500_.jpg",
+    "category": "Suspension"
+  }
+]
