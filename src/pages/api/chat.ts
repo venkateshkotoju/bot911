@@ -53,7 +53,20 @@ for (const product of products) {
 }
 
     res.status(200).json({ reply });
-} catch (error: unknown) {
+  } catch (error: unknown) {
+    console.error('GPT error:', error);
+
+    if (error instanceof Error) {
+      res.status(500).json({
+        error: error.message,
+      });
+    } else {
+      res.status(500).json({
+        error: 'Unknown error occurred',
+      });
+    }
+  }
+
 
 
     console.error('GPT error:', error);
