@@ -53,7 +53,8 @@ for (const product of products) {
 }
 
     res.status(200).json({ reply });
-  } catch (error: any) {
+ } catch (error) {
+
     console.error('GPT error:', error);
     res.status(500).json({
       error: error?.message || 'Something went wrong',

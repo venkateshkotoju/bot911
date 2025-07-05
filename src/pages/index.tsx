@@ -29,7 +29,8 @@ export default function Home() {
 
       setMessages([...messages, `\u{1F464} You: ${input}`, `\u{1F697} ModBot 911: ${data.reply}`]);
       setInput('');
-    } catch (err: any) {
+   } catch (err) {
+
       setError(`\u274C Error: ${err.message || 'Something went wrong'}`);
     }
   };
