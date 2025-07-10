@@ -39,18 +39,22 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white font-sans">
       {/* HERO SECTION */}
       <section className="text-center py-16 px-6 bg-gradient-to-b from-black to-zinc-900">
-        <h1 className="text-4xl font-extrabold mb-4 text-red-600 uppercase tracking-widest">
-          ModBot 911
-        </h1>
-        <p className="text-xl max-w-xl mx-auto text-zinc-300 mb-6">
-          Ask a Porsche 911 tuning expert anything — mods, tools, performance tips.
-        </p>
-        <button
-          onClick={() => document.getElementById('chat')?.scrollIntoView({ behavior: 'smooth' })}
-          className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full text-lg inline-flex items-center gap-2"
-        >
-          Ask the Expert <ArrowRightIcon size={18} />
-        </button>
+  <img
+    src="/logo.png"
+    alt="ModBot 911 Logo"
+    className="h-12 mx-auto mb-4"
+  />
+  <p className="text-xl max-w-xl mx-auto text-zinc-300 mb-6">
+    Ask a Porsche 911 tuning expert anything — mods, tools, performance tips.
+  </p>
+  <button
+    onClick={() => document.getElementById('chat')?.scrollIntoView({ behavior: 'smooth' })}
+    className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full text-lg inline-flex items-center gap-2"
+  >
+    Ask the Expert <ArrowRightIcon size={18} />
+  </button>
+</section>
+
       </section>
 
       {/* FEATURES */}
