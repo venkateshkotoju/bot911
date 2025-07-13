@@ -1,8 +1,6 @@
-
 import { useState } from 'react';
 import { ArrowRightIcon, CheckCircleIcon } from 'lucide-react';
 import ProductGrid from '../components/ProductGrid';
-
 
 export default function Home() {
   const [input, setInput] = useState('');
@@ -23,15 +21,18 @@ export default function Home() {
       const data = await res.json();
 
       if (res.status !== 200) {
-        setError(`\u274C Error: ${data.error}`);
+        setError(`❌ Error: ${data.error}`);
         return;
       }
 
-      setMessages([...messages, `\u{1F464} You: ${input}`, `\u{1F697} ModBot 911: ${data.reply}`]);
+      setMessages([
+        ...messages,
+        `👤 You: ${input}`,
+        `🚗 ModBot 911: ${data.reply}`,
+      ]);
       setInput('');
-   } catch (err) {
-
-      setError(`\u274C Error: ${err.message || 'Something went wrong'}`);
+    } catch (err: any) {
+      setError(`❌ Error: ${err.message || 'Something went wrong'}`);
     }
   };
 
@@ -39,24 +40,24 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white font-sans">
       {/* HERO SECTION */}
       <section className="text-center py-16 px-6 bg-gradient-to-b from-black to-zinc-900">
-  <img
-  src="/modbot-logo.png"
-  alt="ModBot 911 Logo"
-  className="h-12 mx-auto mb-4"
-/>
-
-  <p className="text-xl max-w-xl mx-auto text-zinc-300 mb-6">
-    Ask a Porsche 911 tuning expert anything — mods, tools, performance tips.
-  </p>
-  <button
-    onClick={() => document.getElementById('chat')?.scrollIntoView({ behavior: 'smooth' })}
-    className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full text-lg inline-flex items-center gap-2"
-  >
-    Ask the Expert <ArrowRightIcon size={18} />
-  </button>
-</section>
-
-     
+        <img
+          src="/modbot-logo.png"
+          alt="ModBot 911 Logo"
+          className="h-12 mx-auto mb-4"
+        />
+        <h1 className="text-4xl font-extrabold mb-4 text-red-600 uppercase tracking-widest">
+          ModBot 911
+        </h1>
+        <p className="text-xl max-w-xl mx-auto text-zinc-300 mb-6">
+          Ask a Porsche 911 tuning expert anything — mods, tools, performance tips.
+        </p>
+        <button
+          onClick={() => document.getElementById('chat')?.scrollIntoView({ behavior: 'smooth' })}
+          className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full text-lg inline-flex items-center gap-2"
+        >
+          Ask the Expert <ArrowRightIcon size={18} />
+        </button>
+      </section>
 
       {/* FEATURES */}
       <section className="max-w-5xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -88,7 +89,8 @@ export default function Home() {
           </p>
         </div>
       </section>
-<ProductGrid />
+
+      <ProductGrid />
 
       {/* CHAT SECTION */}
       <section id="chat" className="max-w-4xl mx-auto px-6 pb-20">
