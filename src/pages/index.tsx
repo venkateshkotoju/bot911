@@ -40,10 +40,11 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="text-center py-16 px-6 bg-gradient-to-b from-black to-zinc-900">
   <img
-    src="/logo.png"
-    alt="ModBot 911 Logo"
-    className="h-12 mx-auto mb-4"
-  />
+  src="/modbot-logo.png"
+  alt="ModBot 911 Logo"
+  className="h-12 mx-auto mb-4"
+/>
+
   <p className="text-xl max-w-xl mx-auto text-zinc-300 mb-6">
     Ask a Porsche 911 tuning expert anything — mods, tools, performance tips.
   </p>
