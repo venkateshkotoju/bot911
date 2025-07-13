@@ -1,3 +1,4 @@
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { OpenAI } from 'openai';
 import products from '../../../data/products.json';
@@ -44,13 +45,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     let reply = chatResponse.choices[0]?.message?.content || '';
 
-// Inject affiliate links
-for (const product of products) {
-  for (const keyword of product.keywords) {
-    const regex = new RegExp(`\\b(${keyword})\\b`, 'gi');
-    reply = reply.replace(regex, `[${product.name}](${product.link})`);
-  }
-}
+    // Inject affiliate links
+    for (const product of products) {
+      for (const keyword of product.keywords) {
+        const regex = new RegExp(`\\b(${keyword})\\b`, 'gi');
+        reply = reply.replace(regex, `[${product.name}](${product.link})`);
+      }
+    }
 
     res.status(200).json({ reply });
   } catch (error: unknown) {
@@ -65,14 +66,5 @@ for (const product of products) {
         error: 'Unknown error occurred',
       });
     }
-  }
-
-
-
-    console.error('GPT error:', error);
-    res.status(500).json({
-      error: error?.message || 'Something went wrong',
-      details: error,
-    });
   }
 }
