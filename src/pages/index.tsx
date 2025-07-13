@@ -56,7 +56,7 @@ export default function Home() {
   </button>
 </section>
 
-      </section>
+     
 
       {/* FEATURES */}
       <section className="max-w-5xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-12">
