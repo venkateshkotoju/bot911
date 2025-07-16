@@ -6,7 +6,9 @@
     "link": "https://amzn.to/your-cobb-link",
     "brand": "Cobb",
     "image": "https://m.media-amazon.com/images/I/71oY7K3RfaL._AC_SL1500_.jpg",
-    "category": "ECU"
+    "category": "ECU",
+    "hotDeal": true,
+    "rating": 4.8
   },
   {
     "name": "Fabspeed Maxflo Exhaust",
@@ -14,7 +16,9 @@
     "link": "https://amzn.to/your-fabspeed-link",
     "brand": "Fabspeed",
     "image": "https://m.media-amazon.com/images/I/81ClQH9KgfL._AC_SL1500_.jpg",
-    "category": "Exhaust"
+    "category": "Exhaust",
+    "hotDeal": false,
+    "rating": 4.5
   },
   {
     "name": "Bilstein B16 Coilovers",
@@ -22,6 +26,108 @@
     "link": "https://amzn.to/your-bilstein-link",
     "brand": "Bilstein",
     "image": "https://m.media-amazon.com/images/I/81Zk2RL7KXL._AC_SL1500_.jpg",
-    "category": "Suspension"
+    "category": "Suspension",
+    "hotDeal": false,
+    "rating": 4.6
+  },
+  {
+    "name": "KW V3 Coilover Kit",
+    "keywords": ["kw suspension", "kw v3", "coilover kit"],
+    "link": "https://amzn.to/kw-v3-link",
+    "brand": "KW",
+    "image": "https://m.media-amazon.com/images/I/71nvE9L3jPL._AC_SL1500_.jpg",
+    "category": "Suspension",
+    "hotDeal": false,
+    "rating": 4.7
+  },
+  {
+    "name": "H&R Sport Springs",
+    "keywords": ["h&r springs", "lowering springs", "h&r suspension"],
+    "link": "https://amzn.to/hr-springs-link",
+    "brand": "H&R",
+    "image": "https://m.media-amazon.com/images/I/71FjKZCzRLL._AC_SL1500_.jpg",
+    "category": "Suspension",
+    "hotDeal": false,
+    "rating": 4.5
+  },
+  {
+    "name": "Akrapovič Slip-On Line Exhaust",
+    "keywords": ["akrapovic", "performance exhaust", "akrapovic 911"],
+    "link": "https://amzn.to/akrapovic-exhaust-link",
+    "brand": "Akrapovič",
+    "image": "https://m.media-amazon.com/images/I/61kAZeUz+fL._AC_SL1500_.jpg",
+    "category": "Exhaust",
+    "hotDeal": false,
+    "rating": 4.8
+  },
+  {
+    "name": "Borla S-Type Cat-Back Exhaust",
+    "keywords": ["borla exhaust", "s-type exhaust", "911 catback"],
+    "link": "https://amzn.to/borla-exhaust-link",
+    "brand": "Borla",
+    "image": "https://m.media-amazon.com/images/I/81X5gK6lGIL._AC_SL1500_.jpg",
+    "category": "Exhaust",
+    "hotDeal": false,
+    "rating": 4.5
+  },
+  {
+    "name": "JB4 Performance Tuner for Porsche",
+    "keywords": ["jb4 tuner", "piggyback ecu", "porsche jb4"],
+    "link": "https://amzn.to/jb4-tuner-link",
+    "brand": "Burger Motorsports",
+    "image": "https://m.media-amazon.com/images/I/61rxPZB2f2L._AC_SL1500_.jpg",
+    "category": "ECU",
+    "hotDeal": false,
+    "rating": 4.5
+  },
+  {
+    "name": "APR Stage 1 ECU Tune",
+    "keywords": ["apr tune", "ecu flash", "stage 1 tune"],
+    "link": "https://amzn.to/apr-stage1-link",
+    "brand": "APR",
+    "image": "https://m.media-amazon.com/images/I/71h1obL0IDL._AC_SL1500_.jpg",
+    "category": "ECU",
+    "hotDeal": false,
+    "rating": 4.5
+  },
+  {
+    "name": "OBDLink MX+ OBD2 Scanner",
+    "keywords": ["obd2 scanner", "diagnostic tool", "obdlink mx"],
+    "link": "https://amzn.to/obdlink-scanner-link",
+    "brand": "OBDLink",
+    "image": "https://m.media-amazon.com/images/I/71BSqKLHTsL._AC_SL1500_.jpg",
+    "category": "Tools",
+    "hotDeal": false,
+    "rating": 4.5
+  },
+  {
+    "name": "Pittsburgh Low Profile Floor Jack",
+    "keywords": ["floor jack", "porsche jack", "low profile jack"],
+    "link": "https://amzn.to/pittsburgh-jack-link",
+    "brand": "Pittsburgh",
+    "image": "https://m.media-amazon.com/images/I/81z37GlHRcL._AC_SL1500_.jpg",
+    "category": "Tools",
+    "hotDeal": false,
+    "rating": 4.5
+  },
+  {
+    "name": "Torque Wrench 3/8-Inch Drive",
+    "keywords": ["torque wrench", "precision wrench", "lug nut torque"],
+    "link": "https://amzn.to/torque-wrench-link",
+    "brand": "Tekton",
+    "image": "https://m.media-amazon.com/images/I/81CtJtP5Q8L._AC_SL1500_.jpg",
+    "category": "Tools",
+    "hotDeal": false,
+    "rating": 4.5
+  },
+  {
+    "name": "Porsche 911 Service Manual (Bentley Publishers)",
+    "keywords": ["service manual", "repair guide", "porsche repair book"],
+    "link": "https://amzn.to/911-service-manual-link",
+    "brand": "Bentley Publishers",
+    "image": "https://m.media-amazon.com/images/I/81L30NdCMXL._AC_SL1500_.jpg",
+    "category": "Tools",
+    "hotDeal": false,
+    "rating": 4.7
   }
 ]

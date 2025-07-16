@@ -43,7 +43,7 @@ export default function Home() {
         <img
           src="/modbot-logo.png"
           alt="ModBot 911 Logo"
-          className="h-12 mx-auto mb-4"
+          className="h-20 mx-auto mb-4"
         />
         <h1 className="text-4xl font-extrabold mb-4 text-red-600 uppercase tracking-widest">
           ModBot 911
@@ -132,6 +132,20 @@ export default function Home() {
             </button>
           </div>
         </div>
+<section className="bg-zinc-950 border-t border-zinc-800 py-10 px-4 sm:px-6 text-center">
+  <h2 className="text-xl sm:text-2xl font-bold text-white mb-4">
+    Got More Questions About Modding Your 911?
+  </h2>
+  <p className="text-zinc-400 text-sm sm:text-base mb-6 max-w-xl mx-auto">
+    Whether you're upgrading suspension, tuning ECUs, or chasing horsepower — ModBot 911 has answers.
+  </p>
+  <button
+    onClick={() => document.getElementById('chat')?.scrollIntoView({ behavior: 'smooth' })}
+    className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full text-sm sm:text-base inline-flex items-center gap-2"
+  >
+    🔧 Ask a Question
+  </button>
+</section>
 
         <footer className="text-center text-xs text-zinc-500 pt-10">
           © {new Date().getFullYear()} ModBot 911 • Powered by ChatGPT + Porsche mod culture
