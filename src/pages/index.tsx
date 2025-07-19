@@ -25,7 +25,7 @@ const [loading, setLoading] = useState(false);
   setError(null);
   if (!input.trim()) return;
 
-  setLoading(true); // ⬅️ Start loading
+  setLoading(true);
 
   try {
     const res = await fetch('/api/chat', {
@@ -35,7 +35,7 @@ const [loading, setLoading] = useState(false);
     });
 
     const data = await res.json();
-    setLoading(false); // ⬅️ Stop loading
+    setLoading(false);
 
     if (res.status !== 200) {
       setError(`❌ Error: ${data.error}`);
@@ -49,38 +49,11 @@ const [loading, setLoading] = useState(false);
     ]);
     setInput('');
   } catch (err: any) {
-    setLoading(false); // ⬅️ Stop loading even on error
+    setLoading(false);
     setError(`❌ Error: ${err.message || 'Something went wrong'}`);
   }
 };
 
-    setError(null);
-    if (!input.trim()) return;
-
-    try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: input }),
-      });
-
-      const data = await res.json();
-
-      if (res.status !== 200) {
-        setError(`❌ Error: ${data.error}`);
-        return;
-      }
-
-      setMessages((prev) => [
-        ...prev,
-        `👤 You: ${input}`,
-        `🚗 ModBot 911: ${data.reply}`,
-      ]);
-      setInput('');
-    } catch (err: any) {
-      setError(`❌ Error: ${err.message || 'Something went wrong'}`);
-    }
-  };
 
   const clearHistory = () => {
     localStorage.removeItem('modbot-chat-history');
