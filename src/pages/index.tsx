@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowRightIcon, CheckCircleIcon } from 'lucide-react';
 import ProductGrid from '../components/ProductGrid';
 
@@ -6,8 +6,54 @@ export default function Home() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
+const [loading, setLoading] = useState(false);
+
+  // Load chat history on first render
+  useEffect(() => {
+    const stored = localStorage.getItem('modbot-chat-history');
+    if (stored) {
+      setMessages(JSON.parse(stored));
+    }
+  }, []);
+
+  // Save chat history after every message update
+  useEffect(() => {
+    localStorage.setItem('modbot-chat-history', JSON.stringify(messages));
+  }, [messages]);
 
   const sendMessage = async () => {
+  setError(null);
+  if (!input.trim()) return;
+
+  setLoading(true); // ⬅️ Start loading
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: input }),
+    });
+
+    const data = await res.json();
+    setLoading(false); // ⬅️ Stop loading
+
+    if (res.status !== 200) {
+      setError(`❌ Error: ${data.error}`);
+      return;
+    }
+
+    setMessages([
+      ...messages,
+      `👤 You: ${input}`,
+      `🚗 ModBot 911: ${data.reply}`,
+    ]);
+    setInput('');
+  } catch (err: any) {
+    setLoading(false); // ⬅️ Stop loading even on error
+    setError(`❌ Error: ${err.message || 'Something went wrong'}`);
+  }
+};
+
     setError(null);
     if (!input.trim()) return;
 
@@ -25,8 +71,8 @@ export default function Home() {
         return;
       }
 
-      setMessages([
-        ...messages,
+      setMessages((prev) => [
+        ...prev,
         `👤 You: ${input}`,
         `🚗 ModBot 911: ${data.reply}`,
       ]);
@@ -36,85 +82,46 @@ export default function Home() {
     }
   };
 
+  const clearHistory = () => {
+    localStorage.removeItem('modbot-chat-history');
+    setMessages([]);
+  };
+
   return (
     <main className="min-h-screen bg-black text-white font-sans">
-      {/* HERO SECTION */}
-      <section className="text-center py-16 px-6 bg-gradient-to-b from-black to-zinc-900">
-        <img
-          src="/modbot-logo.png"
-          alt="ModBot 911 Logo"
-          className="h-20 mx-auto mb-4"
-        />
-        <h1 className="text-4xl font-extrabold mb-4 text-red-600 uppercase tracking-widest">
-          ModBot 911
-        </h1>
-        <p className="text-xl max-w-xl mx-auto text-zinc-300 mb-6">
-          Ask a Porsche 911 tuning expert anything — mods, tools, performance tips.
-        </p>
-        <button
-          onClick={() => document.getElementById('chat')?.scrollIntoView({ behavior: 'smooth' })}
-          className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full text-lg inline-flex items-center gap-2"
-        >
-          Ask the Expert <ArrowRightIcon size={18} />
-        </button>
-      </section>
-
-      {/* FEATURES */}
-      <section className="max-w-5xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-white mb-2">Why ModBot 911?</h2>
-          <ul className="text-zinc-300 space-y-3 text-sm">
-            <li className="flex items-start gap-2">
-              <CheckCircleIcon size={16} className="text-green-400 mt-1" />
-              Recommends real parts and brands — Fabspeed, Bilstein, Cobb, and more.
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircleIcon size={16} className="text-green-400 mt-1" />
-              Explains horsepower gains, ride feel, and installation risks.
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircleIcon size={16} className="text-green-400 mt-1" />
-              Provides mod tips for 996, 997, 991, and 992 owners.
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircleIcon size={16} className="text-green-400 mt-1" />
-              Suggests tools and [Affiliate_Links] to help you build smarter.
-            </li>
-          </ul>
-        </div>
-        <div className="rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950 p-6 shadow">
-          <p className="text-sm text-zinc-400 mb-2">Sample question:</p>
-          <p className="bg-zinc-800 p-4 rounded text-sm">
-            “What suspension upgrades are best for a 997.2 used on track and daily?”
-          </p>
-        </div>
-      </section>
+      {/* ... HERO and FEATURES sections ... */}
 
       <ProductGrid />
 
       {/* CHAT SECTION */}
-      <section id="chat" className="max-w-4xl mx-auto px-6 pb-20">
-        <div className="bg-zinc-900 p-6 rounded-xl space-y-4 shadow-lg">
+      <section id="chat" className="max-w-4xl mx-auto px-4 sm:px-6 pb-20">
+        <div className="bg-zinc-900 p-6 sm:p-8 rounded-xl space-y-4 shadow-lg">
           <h2 className="text-xl font-semibold text-white">ModBot Live Chat</h2>
 
-          {error && (
-            <p className="bg-red-800 text-red-200 p-2 rounded">{error}</p>
-          )}
+          {error && <p className="bg-red-800 text-red-200 p-2 rounded">{error}</p>}
 
           <div className="space-y-2 min-h-[200px] max-h-[300px] overflow-y-auto">
-            {messages.map((msg, idx) => (
-              <p
-                key={idx}
-                className={`p-2 rounded text-sm whitespace-pre-wrap ${
-                  msg.startsWith('👤')
-                    ? 'bg-zinc-800 text-white text-right'
-                    : 'bg-zinc-700 text-left'
-                }`}
-              >
-                {msg}
-              </p>
-            ))}
-          </div>
+  {messages.map((msg, idx) => (
+    <p
+      key={idx}
+      className={`p-2 rounded text-sm whitespace-pre-wrap ${
+        msg.startsWith('👤')
+          ? 'bg-zinc-800 text-white text-right'
+          : 'bg-zinc-700 text-left'
+      }`}
+    >
+      {msg}
+    </p>
+  ))}
+
+  {/* 👇 Add loading message here */}
+  {loading && (
+    <p className="p-2 rounded text-sm bg-zinc-800 text-left text-zinc-400 animate-pulse">
+      ModBot 911 is thinking...
+    </p>
+  )}
+</div>
+
 
           <div className="flex gap-2">
             <input
@@ -131,21 +138,16 @@ export default function Home() {
               Ask
             </button>
           </div>
+
+          <div className="text-right">
+            <button
+              onClick={clearHistory}
+              className="text-xs text-zinc-400 hover:text-red-400 underline"
+            >
+              Clear Chat History
+            </button>
+          </div>
         </div>
-<section className="bg-zinc-950 border-t border-zinc-800 py-10 px-4 sm:px-6 text-center">
-  <h2 className="text-xl sm:text-2xl font-bold text-white mb-4">
-    Got More Questions About Modding Your 911?
-  </h2>
-  <p className="text-zinc-400 text-sm sm:text-base mb-6 max-w-xl mx-auto">
-    Whether you're upgrading suspension, tuning ECUs, or chasing horsepower — ModBot 911 has answers.
-  </p>
-  <button
-    onClick={() => document.getElementById('chat')?.scrollIntoView({ behavior: 'smooth' })}
-    className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full text-sm sm:text-base inline-flex items-center gap-2"
-  >
-    🔧 Ask a Question
-  </button>
-</section>
 
         <footer className="text-center text-xs text-zinc-500 pt-10">
           © {new Date().getFullYear()} ModBot 911 • Powered by ChatGPT + Porsche mod culture
