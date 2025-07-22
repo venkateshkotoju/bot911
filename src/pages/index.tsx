@@ -65,14 +65,15 @@ const [loading, setLoading] = useState(false);
     {/* HERO SECTION */}
     <header className="text-center py-8">
   <img
-    src="/logo.png"
-    alt="ModBot 911 Logo"
-    className="mx-auto h-16 w-auto"
+   src="/modbot-logo.png" alt="ModBot 911 Logo" className="h-10 mx-auto" 
+
+    
   />
   <p className="text-sm sm:text-base text-zinc-400 mt-2">
     Your Porsche 911 mod companion
   </p>
 </header>
+
 
 
     <ProductGrid />
