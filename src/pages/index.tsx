@@ -64,13 +64,16 @@ const [loading, setLoading] = useState(false);
   <main className="min-h-screen bg-black text-white font-sans">
     {/* HERO SECTION */}
     <header className="text-center py-8">
-      <h1 className="text-3xl sm:text-4xl font-bold text-red-600 tracking-tight">
-        ModBot 911
-      </h1>
-      <p className="text-sm sm:text-base text-zinc-400 mt-2">
-        Your Porsche 911 mod companion
-      </p>
-    </header>
+  <img
+    src="/logo.png"
+    alt="ModBot 911 Logo"
+    className="mx-auto h-16 w-auto"
+  />
+  <p className="text-sm sm:text-base text-zinc-400 mt-2">
+    Your Porsche 911 mod companion
+  </p>
+</header>
+
 
     <ProductGrid />
 
