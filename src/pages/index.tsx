@@ -64,9 +64,9 @@ export default function Home() {
         input={input}
         setInput={setInput}
         messages={messages}
-        setMessages={setMessages}
+        
         error={error}
-        setError={setError}
+        
         loading={loading}
         sendMessage={sendMessage}
         clearHistory={clearHistory}
