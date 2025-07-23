@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import ProductGrid from '../components/ProductGrid';
+import ProductGrid from '../components/sections/ProductGrid';
+
 import Hero from '../components/sections/Hero';
 import ChatBox from '../components/sections/ChatBox';
 import Footer from '../components/sections/Footer';
