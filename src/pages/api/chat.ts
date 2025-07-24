@@ -1,7 +1,8 @@
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { OpenAI } from 'openai';
-import products from '../../../data/products.json';
+import products from '@/data/products.json';
+
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
