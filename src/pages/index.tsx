@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ProductGrid from '../components/sections/ProductGrid';
+import HotDeals from '../components/sections/HotDeals';
 
 import Hero from '../components/sections/Hero';
 import ChatBox from '../components/sections/ChatBox';
@@ -61,6 +62,7 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white font-sans">
       <Hero />
       <ProductGrid />
+      <HotDeals />
       <ChatBox
         input={input}
         setInput={setInput}

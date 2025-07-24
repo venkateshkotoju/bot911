@@ -8,7 +8,8 @@
     "image": "https://m.media-amazon.com/images/I/71oY7K3RfaL._AC_SL1500_.jpg",
     "category": "ECU",
     "hotDeal": true,
-    "rating": 4.8
+    "rating": 4.8,
+    "price": 129.99
   },
   {
     "name": "Fabspeed Maxflo Exhaust",
@@ -18,7 +19,8 @@
     "image": "https://m.media-amazon.com/images/I/81ClQH9KgfL._AC_SL1500_.jpg",
     "category": "Exhaust",
     "hotDeal": false,
-    "rating": 4.5
+    "rating": 4.5,
+    "price": 129.99
   },
   {
     "name": "Bilstein B16 Coilovers",
@@ -28,7 +30,8 @@
     "image": "https://m.media-amazon.com/images/I/81Zk2RL7KXL._AC_SL1500_.jpg",
     "category": "Suspension",
     "hotDeal": false,
-    "rating": 4.6
+    "rating": 4.6,
+    "price": 129.99
   },
   {
     "name": "KW V3 Coilover Kit",
@@ -38,7 +41,8 @@
     "image": "https://m.media-amazon.com/images/I/71nvE9L3jPL._AC_SL1500_.jpg",
     "category": "Suspension",
     "hotDeal": false,
-    "rating": 4.7
+    "rating": 4.7,
+    "price": 129.99
   },
   {
     "name": "H&R Sport Springs",
@@ -48,7 +52,8 @@
     "image": "https://m.media-amazon.com/images/I/71FjKZCzRLL._AC_SL1500_.jpg",
     "category": "Suspension",
     "hotDeal": false,
-    "rating": 4.5
+    "rating": 4.5,
+    "price": 129.99
   },
   {
     "name": "Akrapovič Slip-On Line Exhaust",
@@ -58,7 +63,8 @@
     "image": "https://m.media-amazon.com/images/I/61kAZeUz+fL._AC_SL1500_.jpg",
     "category": "Exhaust",
     "hotDeal": false,
-    "rating": 4.8
+    "rating": 4.8,
+    "price": 129.99
   },
   {
     "name": "Borla S-Type Cat-Back Exhaust",
@@ -68,7 +74,8 @@
     "image": "https://m.media-amazon.com/images/I/81X5gK6lGIL._AC_SL1500_.jpg",
     "category": "Exhaust",
     "hotDeal": false,
-    "rating": 4.5
+    "rating": 4.5,
+    "price": 129.99
   },
   {
     "name": "JB4 Performance Tuner for Porsche",
@@ -78,7 +85,8 @@
     "image": "https://m.media-amazon.com/images/I/61rxPZB2f2L._AC_SL1500_.jpg",
     "category": "ECU",
     "hotDeal": false,
-    "rating": 4.5
+    "rating": 4.5,
+    "price": 129.99
   },
   {
     "name": "APR Stage 1 ECU Tune",
@@ -88,7 +96,8 @@
     "image": "https://m.media-amazon.com/images/I/71h1obL0IDL._AC_SL1500_.jpg",
     "category": "ECU",
     "hotDeal": false,
-    "rating": 4.5
+    "rating": 4.5,
+    "price": 129.99
   },
   {
     "name": "OBDLink MX+ OBD2 Scanner",
@@ -98,7 +107,8 @@
     "image": "https://m.media-amazon.com/images/I/71BSqKLHTsL._AC_SL1500_.jpg",
     "category": "Tools",
     "hotDeal": false,
-    "rating": 4.5
+    "rating": 4.5,
+    "price": 129.99
   },
   {
     "name": "Pittsburgh Low Profile Floor Jack",
@@ -108,7 +118,8 @@
     "image": "https://m.media-amazon.com/images/I/81z37GlHRcL._AC_SL1500_.jpg",
     "category": "Tools",
     "hotDeal": false,
-    "rating": 4.5
+    "rating": 4.5,
+    "price": 129.99
   },
   {
     "name": "Torque Wrench 3/8-Inch Drive",
@@ -118,7 +129,8 @@
     "image": "https://m.media-amazon.com/images/I/81CtJtP5Q8L._AC_SL1500_.jpg",
     "category": "Tools",
     "hotDeal": false,
-    "rating": 4.5
+    "rating": 4.5,
+    "price": 129.99
   },
   {
     "name": "Porsche 911 Service Manual (Bentley Publishers)",
@@ -128,6 +140,7 @@
     "image": "https://m.media-amazon.com/images/I/81L30NdCMXL._AC_SL1500_.jpg",
     "category": "Tools",
     "hotDeal": false,
-    "rating": 4.7
+    "rating": 4.7,
+    "price": 129.99
   }
 ]

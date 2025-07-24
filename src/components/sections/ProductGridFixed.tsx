@@ -20,7 +20,7 @@ const ProductGrid = () => {
 
   // Filter products based on search and category
   const filtered = products.filter((product) => {
-    const matchesSearch =
+    const matchesSearch = 
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.keywords.some(keyword => keyword.toLowerCase().includes(searchTerm.toLowerCase()));
