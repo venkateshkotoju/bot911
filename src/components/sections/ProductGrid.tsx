@@ -10,40 +10,39 @@ type Product = {
   category: string;
   hotDeal: boolean;
   rating: number;
+  price: number;
 };
 
 const ProductGrid = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const products: Product[] = productsData;
-
-  // Filter products based on search and category
-  const filtered = products.filter((product) => {
+  const filtered = productsData.filter((product) => {
     const matchesSearch =
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.keywords.some(keyword => keyword.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
+      product.brand.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesCategory =
+      selectedCategory === 'All' || product.category === selectedCategory;
+
     return matchesSearch && matchesCategory;
   });
 
-  // Group filtered products by category
   const grouped = filtered.reduce((acc: Record<string, Product[]>, product) => {
-    const category = product.category || 'Other';
-    acc[category] = acc[category] || [];
-    acc[category].push(product);
+    if (!acc[product.category]) acc[product.category] = [];
+    acc[product.category].push(product);
     return acc;
   }, {});
 
-  // Unique categories for the dropdown
-  const categories = ['All', ...new Set(products.map((p) => p.category))];
+  const categories = ['All', ...new Set(productsData.map((p) => p.category))];
 
   return (
     <section className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
-      <h2 className="text-2xl font-bold text-white mb-6">Recommended Tools & Upgrades</h2>
+      <h2 className="text-2xl font-bold text-white mb-6">
+        Recommended Tools & Upgrades
+      </h2>
 
-      {/* Filters */}
+      {/* Search + Category Filters */}
       <div className="flex flex-wrap gap-4 mb-8">
         <select
           value={selectedCategory}
@@ -66,7 +65,7 @@ const ProductGrid = () => {
         />
       </div>
 
-      {/* Grouped Results */}
+      {/* Grouped Product Cards */}
       {Object.entries(grouped).map(([category, items]) => (
         <div key={category} className="mb-10">
           <h3 className="text-2xl font-bold text-white uppercase border-b border-zinc-700 pb-2 mb-6">
@@ -105,11 +104,15 @@ const ProductGrid = () => {
                     {Array.from({ length: 5 }, (_, i) => (
                       <span key={i}>{i < Math.floor(product.rating) ? '★' : '☆'}</span>
                     ))}
-                    <span className="text-zinc-400 ml-1">({product.rating.toFixed(1)})</span>
+                    <span className="text-zinc-400 ml-1">
+                      ({product.rating.toFixed(1)})
+                    </span>
                   </div>
                 )}
 
-                <p className="text-zinc-400 text-xs sm:text-sm mb-2">Brand: {product.brand}</p>
+                <p className="text-zinc-400 text-xs sm:text-sm mb-2">
+                  Brand: {product.brand}
+                </p>
 
                 <a
                   href={product.link}
