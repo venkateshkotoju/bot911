@@ -115,14 +115,15 @@ const ProductGrid = () => {
                 </p>
 
                 <a
-                  href={product.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={`Buy ${product.name}`}
-                  className="mt-auto inline-block px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded text-sm"
-                >
-                  Buy Now
-                </a>
+  href={`/track?id=${encodeURIComponent(product.id)}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  title={`Buy ${product.name}`}
+  className="mt-auto inline-block px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded text-sm"
+>
+  Buy Now
+</a>
+
               </div>
             ))}
           </div>
