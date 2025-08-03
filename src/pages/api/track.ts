@@ -1,26 +1,24 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import products from '../../../data/products.json';
+import { NextRequest } from 'next/server';
+import products from '@/data/products.json';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { id } = req.query;
+type Product = {
+  id: string;
+  affiliateUrl: string;
+};
 
-  if (!id || typeof id !== 'string') {
-    return res.status(400).json({ error: 'Missing or invalid product id' });
+export async function GET(req: NextRequest) {
+  const searchParams = req.nextUrl.searchParams;
+  const id = searchParams.get('id');
+
+  if (!id) {
+    return new Response('Missing product ID', { status: 400 });
   }
 
-  const product = products.find((p) => p.id === id);
+  const product = products.find(p => p.id === id) as Product | undefined;
 
   if (!product) {
-    return res.status(404).json({ error: 'Product not found' });
+    return new Response('Product not found', { status: 404 });
   }
 
-  const url = (product.affiliateUrl || product.link) as string;
-
-  if (!url) {
-    return res.status(500).json({ error: 'Affiliate URL missing for product' });
-  }
-
-  // Optional: Add tracking logic here (e.g., analytics, database, etc.)
-
-  return res.redirect(url);
+  return Response.redirect(product.affiliateUrl, 302);
 }

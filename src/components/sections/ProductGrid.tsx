@@ -2,9 +2,10 @@ import { useState } from 'react';
 import productsData from '../../data/products.json';
 
 type Product = {
+  id: string;
   name: string;
   keywords: string[];
-  link: string;
+  affiliateUrl: string;
   brand: string;
   image: string;
   category: string;
@@ -12,6 +13,7 @@ type Product = {
   rating: number;
   price: number;
 };
+
 
 const ProductGrid = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -29,10 +31,12 @@ const ProductGrid = () => {
   });
 
   const grouped = filtered.reduce((acc: Record<string, Product[]>, product) => {
-    if (!acc[product.category]) acc[product.category] = [];
-    acc[product.category].push(product);
-    return acc;
-  }, {});
+  const cat = product.category || "Uncategorized";
+  if (!acc[cat]) acc[cat] = [];
+  acc[cat].push(product);
+  return acc;
+}, {});
+
 
   const categories = ['All', ...new Set(productsData.map((p) => p.category))];
 
@@ -114,8 +118,10 @@ const ProductGrid = () => {
                   Brand: {product.brand}
                 </p>
 
-                <a
-  href={`/track?id=${encodeURIComponent(product.id)}`}
+                
+
+  <a
+  href={`/track?id=${product.id}`}
   target="_blank"
   rel="noopener noreferrer"
   title={`Buy ${product.name}`}
@@ -123,6 +129,7 @@ const ProductGrid = () => {
 >
   Buy Now
 </a>
+
 
               </div>
             ))}
