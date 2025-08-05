@@ -121,7 +121,7 @@ const ProductGrid = () => {
                 
 
   <a
-  href={`/track?id=${product.id}`}
+  href={`/api/track?id=${product.id}`}
   target="_blank"
   rel="noopener noreferrer"
   title={`Buy ${product.name}`}
