@@ -16,11 +16,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // Create click log
   const click = {
-    id,
-    timestamp: new Date().toISOString(),
-    userAgent: req.headers['user-agent'] || '',
-    ip: req.headers['x-forwarded-for'] || req.socket.remoteAddress || '',
-  };
+  id,
+  name: product.name,
+  image: product.image,
+  brand: product.brand,
+  timestamp: new Date().toISOString(),
+  userAgent: req.headers['user-agent'] || '',
+  ip: req.headers['x-forwarded-for'] || req.socket.remoteAddress || '',
+};
+
 
   // ✅ Write to file only in development
   if (process.env.NODE_ENV === 'development') {
