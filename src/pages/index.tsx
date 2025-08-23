@@ -11,10 +11,21 @@ export default function Home() {
   const [messages, setMessages] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
     const stored = localStorage.getItem('modbot-chat-history');
-    if (stored) setMessages(JSON.parse(stored));
+    if (stored) {
+      try {
+        const parsedMessages = JSON.parse(stored);
+        if (Array.isArray(parsedMessages)) {
+          setMessages(parsedMessages);
+        }
+      } catch (error) {
+        console.error('Error parsing stored messages:', error);
+        localStorage.removeItem('modbot-chat-history');
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -23,14 +34,24 @@ export default function Home() {
 
   const sendMessage = async () => {
     setError(null);
-    if (!input.trim()) return;
+    if (!input.trim() || loading) return;
 
+    const userMessage = `👤 You: ${input}`;
+    const currentInput = input;
+    
+    // Immediately add user message and clear input
+    setMessages(prev => [...prev, userMessage]);
+    setInput('');
     setLoading(true);
+
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: input }),
+        body: JSON.stringify({ 
+          query: currentInput,
+          conversationHistory: messages // Send conversation context
+        }),
       });
 
       const data = await res.json();
@@ -38,24 +59,30 @@ export default function Home() {
 
       if (res.status !== 200) {
         setError(`❌ Error: ${data.error}`);
+        // Remove the user message if there was an error
+        setMessages(prev => prev.slice(0, -1));
+        setInput(currentInput); // Restore input
         return;
       }
 
-      setMessages([
-        ...messages,
-        `👤 You: ${input}`,
-        `🚗 ModBot 911: ${data.reply}`,
-      ]);
-      setInput('');
+      const botMessage = `🚗 ModBot 911: ${data.reply}`;
+      setMessages(prev => [...prev, botMessage]);
+      
     } catch (err: any) {
       setLoading(false);
-      setError(`❌ Error: ${err.message || 'Something went wrong'}`);
+      setError(`❌ Network Error: ${err.message || 'Connection failed. Please try again.'}`);
+      // Remove the user message if there was an error
+      setMessages(prev => prev.slice(0, -1));
+      setInput(currentInput); // Restore input
     }
   };
 
   const clearHistory = () => {
-    localStorage.removeItem('modbot-chat-history');
-    setMessages([]);
+    if (window.confirm('Are you sure you want to clear the chat history?')) {
+      localStorage.removeItem('modbot-chat-history');
+      setMessages([]);
+      setError(null);
+    }
   };
 
   return (
