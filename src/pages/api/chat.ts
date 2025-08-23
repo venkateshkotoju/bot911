@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { OpenAI } from 'openai';
 import products from '@/data/products.json';
+import { recommendationEngine } from '@/lib/recommendationEngine';
 
 
 const openai = new OpenAI({
@@ -17,12 +18,16 @@ Your tone is clear, smart, and a bit gearhead. You remember previous parts of ou
 
 When answering:
 - Remember what the user mentioned before in our conversation
+- Ask about their specific 911 model (996/997/991/992) and variant (Turbo/GT3/Carrera) if not mentioned
+- Understand their goals: power gains, handling improvement, sound enhancement, or aesthetics
+- Consider their experience level and budget when making suggestions
 - Recommend real brands (Bilstein, Fabspeed, Cobb, etc.)
-- Include [Affiliate_Link] where upgrades or tools are helpful
 - Explain horsepower gains, feel, and risks of mods
 - Compare generations and what to prioritize for each
 - Mention tools, install tips, and what to avoid
 - Reference previous questions or recommendations when relevant
+
+IMPORTANT: Keep your response focused and concise. The system will automatically add smart product recommendations based on the user's query, so you don't need to list specific products - focus on providing expert advice and context.
 
 Be helpful, not salesy. Speak from real-world experience. Keep answers to the point but packed with value.
 
@@ -61,12 +66,55 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     let reply = chatResponse.choices[0]?.message?.content || '';
 
-    // Inject affiliate links
+    // 🧠 SMART RECOMMENDATION LOGIC
+    // Get intelligent product recommendations based on the query
+    const { recommendations, explanation } = recommendationEngine.getSmartRecommendations(query, 3);
+    
+    // If we have good recommendations, enhance the AI response
+    if (recommendations.length > 0 && recommendations[0].relevanceScore > 5) {
+      // Append smart recommendations to the AI response
+      reply += `\n\n${explanation}`;
+      
+      // Add a separator for better formatting
+      reply += "\n\n---\n\n💡 **Smart Recommendations:**\n";
+      
+      recommendations.forEach((product, index) => {
+        reply += `\n${index + 1}. **${product.name}** - Perfect match! (Score: ${product.relevanceScore})\n`;
+        reply += `   💰 $${product.price} | ⭐ ${product.rating}/5 | 🏷️ ${product.brand}\n`;
+        
+        if (product.matchReasons.length > 0) {
+          reply += `   ✅ ${product.matchReasons.slice(0, 3).join(' • ')}\n`;
+        }
+        
+        // Add power gains if available
+        if (product.specifications?.powerGains) {
+          reply += `   🚀 Expected gains: ${product.specifications.powerGains}\n`;
+        }
+        
+        // Add installation info
+        if (product.installationDifficulty) {
+          reply += `   🔧 Installation: ${product.installationDifficulty}`;
+          if (product.installationTime) {
+            reply += ` (${product.installationTime})`;
+          }
+          reply += "\n";
+        }
+      });
+    }
+
+    // Original affiliate link injection (now enhanced with smart recommendations)
     for (const product of products) {
       for (const keyword of product.keywords) {
         const regex = new RegExp(`\\b(${keyword})\\b`, 'gi');
         reply = reply.replace(regex, `[${product.name}](${product.affiliateUrl})`);
       }
+    }
+    
+    // Also inject links for smart recommendations
+    for (const recommendation of recommendations) {
+      const productName = recommendation.name;
+      const regex = new RegExp(`\\b(${productName})\\b`, 'gi');
+      reply = reply.replace(regex, `[${productName}](${recommendation.affiliateUrl})`);
     }
 
     res.status(200).json({ reply });

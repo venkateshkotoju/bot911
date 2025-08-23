@@ -9,31 +9,64 @@
     "category": "ECU",
     "hotDeal": true,
     "rating": 4.8,
-    "price": 129.99
+    "price": 129.99,
+    "description": "The COBB Accessport V3 is the world's best selling, most flexible ECU upgrade solution for Porsche 911 models. Unlock power hidden within the ECU by replacing conservative factory settings with more aggressive calibrations.",
+    "specifications": {
+      "compatibility": "2012+ Porsche 911 Turbo/Turbo S",
+      "powerGains": "Up to 80HP/90TQ",
+      "features": ["Real-time monitoring", "Multiple map storage", "Data logging", "Fault code reading"]
+    },
+    "installationDifficulty": "Easy",
+    "installationTime": "15 minutes",
+    "installationGuide": "1. Download Accessport Manager software\n2. Connect Accessport to OBD-II port\n3. Follow on-screen instructions to flash ECU\n4. Select desired map and enjoy!",
+    "pros": ["Easy installation", "Significant power gains", "Real-time monitoring", "Excellent support"],
+    "cons": ["Voids warranty", "Premium price", "Requires premium fuel"]
   },
   {
     "id": "fabspeed-maxflo",
     "name": "Fabspeed Maxflo Exhaust",
-    "keywords": ["fabspeed", "fabspeed exhaust", "performance exhaust"],
+    "keywords": ["fabspeed", "fabspeed exhaust", "performance exhaust", "maxflo"],
     "affiliateUrl": "https://amzn.to/your-fabspeed-link",
     "brand": "Fabspeed",
     "image": "https://m.media-amazon.com/images/I/81ClQH9KgfL._AC_SL1500_.jpg",
     "category": "Exhaust",
     "hotDeal": false,
     "rating": 4.5,
-    "price": 129.99
+    "price": 289.99,
+    "description": "The Fabspeed Maxflo Exhaust delivers an aggressive, deep sound while improving exhaust flow for better performance. Made from high-quality stainless steel with a lifetime warranty.",
+    "specifications": {
+      "compatibility": "1999-2012 Porsche 911 (996, 997)",
+      "powerGains": "10-15HP gain",
+      "features": ["Aggressive sound", "Stainless steel construction", "Lifetime warranty", "Improved flow"]
+    },
+    "installationDifficulty": "Moderate",
+    "installationTime": "2-3 hours",
+    "installationGuide": "1. Lift vehicle safely\n2. Remove factory exhaust system\n3. Install Fabspeed system with provided hardware\n4. Check for proper fitment and clearances\n5. Start engine and check for leaks",
+    "pros": ["Amazing sound quality", "Proven performance gains", "Excellent build quality", "Great customer support"],
+    "cons": ["Can be loud for daily driving", "Professional install recommended", "Higher price point"]
   },
   {
     "id": "bilstein-b16",
     "name": "Bilstein B16 Coilovers",
-    "keywords": ["bilstein", "coilovers", "suspension"],
+    "keywords": ["bilstein", "coilovers", "suspension", "b16", "pss10"],
     "affiliateUrl": "https://amzn.to/your-bilstein-link",
     "brand": "Bilstein",
     "image": "https://m.media-amazon.com/images/I/81Zk2RL7KXL._AC_SL1500_.jpg",
     "category": "Suspension",
-    "hotDeal": false,
+    "hotDeal": true,
     "rating": 4.6,
-    "price": 129.99
+    "price": 189.99,
+    "description": "Bilstein B16 PSS10 coilovers offer 10-way adjustable dampening with lowering capability. Perfect balance of comfort and performance for street and occasional track use.",
+    "specifications": {
+      "compatibility": "2005-2012 Porsche 911 (997 generation)",
+      "powerGains": "Improved handling dynamics",
+      "features": ["10-way adjustable dampening", "Height adjustable", "TÜV approved", "Monotube technology"]
+    },
+    "installationDifficulty": "Hard",
+    "installationTime": "4-6 hours",
+    "installationGuide": "1. Remove wheels and factory suspension\n2. Install coilovers with proper torque specs\n3. Set initial height and dampening\n4. Perform alignment\n5. Test drive and fine-tune settings",
+    "pros": ["Excellent build quality", "Wide adjustment range", "Proven reliability", "Great for street and track"],
+    "cons": ["Complex installation", "Requires alignment", "Premium pricing", "Needs periodic maintenance"]
   },
   {
     "id": "kw-v3",

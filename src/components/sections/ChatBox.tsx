@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import SocialShare from '../SocialShare';
 
 interface ChatBoxProps {
   input: string;
@@ -47,6 +48,9 @@ export default function ChatBox({
             const isUser = msg.startsWith('👤');
             const cleanMsg = msg.replace(/^(👤 You: |🚗 ModBot 911: )/, '');
             
+            // Check if bot message contains product recommendations (contains links)
+            const hasProductLinks = !isUser && cleanMsg.includes('[') && cleanMsg.includes('](');
+            
             return (
               <div
                 key={idx}
@@ -60,9 +64,20 @@ export default function ChatBox({
                   }`}
                 >
                   {!isUser && (
-                    <div className="flex items-center gap-2 mb-1 text-xs text-zinc-300">
-                      <span>🚗</span>
-                      <span className="font-semibold">ModBot 911</span>
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-center gap-2 text-xs text-zinc-300">
+                        <span>🚗</span>
+                        <span className="font-semibold">ModBot 911</span>
+                      </div>
+                      
+                      {/* Social Share for product recommendations */}
+                      {hasProductLinks && (
+                        <SocialShare
+                          productName="Porsche 911 Mod Recommendation"
+                          productUrl={`${window.location.origin}/#chat`}
+                          recommendationText={cleanMsg.substring(0, 100) + (cleanMsg.length > 100 ? '...' : '')}
+                        />
+                      )}
                     </div>
                   )}
                   <div className={isUser ? 'text-right' : ''}>
@@ -71,7 +86,7 @@ export default function ChatBox({
                 </div>
               </div>
             );
-          })}
+          })}}
 
           {loading && (
             <div className="flex justify-start">

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import productsData from '../../data/products.json';
 import { useFavorites } from '../../contexts/FavoritesContext';
 import { useComparison } from '../../contexts/ComparisonContext';
+import Link from 'next/link';
 
 type Product = {
   id: string;
@@ -289,7 +290,12 @@ const ProductGrid = () => {
                 </div>
 
                 <h4 className="text-white font-semibold text-base sm:text-lg mb-1 flex items-center gap-2">
-                  {product.name}
+                  <Link 
+                    href={`/product/${product.id}`}
+                    className="hover:text-red-400 transition-colors"
+                  >
+                    {product.name}
+                  </Link>
                   {product.hotDeal && (
                     <span className="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full animate-pulse">
                       🔥 Hot Deal
@@ -322,6 +328,14 @@ const ProductGrid = () => {
                   >
                     Buy Now
                   </a>
+                  
+                  <Link
+                    href={`/product/${product.id}`}
+                    className="px-3 py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded text-sm"
+                    title="View details"
+                  >
+                    👁️
+                  </Link>
                   
                   {/* Compare Button */}
                   <button

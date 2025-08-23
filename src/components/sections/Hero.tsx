@@ -1,10 +1,13 @@
 import { useFavorites } from '../../contexts/FavoritesContext';
 import { useComparison } from '../../contexts/ComparisonContext';
+import { useState } from 'react';
 import Link from 'next/link';
+import SubscriptionModal from '../SubscriptionModal';
 
 export default function Hero() {
   const { favorites } = useFavorites();
   const { compareProducts } = useComparison();
+  const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
 
   return (
     <header className="text-center py-8">
@@ -40,11 +43,31 @@ export default function Hero() {
               </span>
             )}
           </Link>
+          
+          <button
+            onClick={() => setShowSubscriptionModal(true)}
+            className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center gap-2"
+          >
+            📧 Subscribe
+          </button>
+          
+          <Link
+            href="/admin"
+            className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors flex items-center gap-2"
+          >
+            🛠️ Admin
+          </Link>
         </div>
       </div>
       <p className="text-sm sm:text-base text-zinc-400 mt-2">
         Your Porsche 911 mod companion
       </p>
+      
+      {/* Subscription Modal */}
+      <SubscriptionModal 
+        isOpen={showSubscriptionModal} 
+        onClose={() => setShowSubscriptionModal(false)} 
+      />
     </header>
   )
 }
