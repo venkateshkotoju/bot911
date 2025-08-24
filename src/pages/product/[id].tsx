@@ -66,7 +66,7 @@ export default function ProductPage({ product }: ProductPageProps) {
         structuredData={productSEO.structuredData}
       />
       <div className="min-h-screen bg-black text-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
         {/* Navigation */}
         <div className="mb-8">
           <Link href="/" className="text-red-400 hover:text-red-300 flex items-center gap-2">
@@ -333,6 +333,7 @@ export default function ProductPage({ product }: ProductPageProps) {
                 </Link>
               ))}
           </div>
+        </div>
         </div>
       </div>
     </>

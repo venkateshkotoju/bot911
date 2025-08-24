@@ -12,7 +12,6 @@ export default function Home() {
   const [messages, setMessages] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
     const stored = localStorage.getItem('modbot-chat-history');

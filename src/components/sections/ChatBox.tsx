@@ -45,7 +45,7 @@ export default function ChatBox({
           </div>
         )}
 
-        <div className="space-y-3 sm:space-y-4 min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] max-h-[400px] sm:max-h-[500px] overflow-y-auto px-2 sm:px-3 scrollbar-thin scrollbar-thumb-zinc-600 scrollbar-track-zinc-800">
+        <div className="space-y-3 sm:space-y-4 min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] max-h-[400px] sm:max-h-[500px] overflow-y-auto px-2 sm:px-3">
           {messages.length === 0 && (
             <div className="text-center text-zinc-400 py-8 sm:py-12">
               <div className="text-4xl sm:text-5xl lg:text-6xl mb-4">👋</div>
@@ -55,13 +55,13 @@ export default function ChatBox({
               </p>
               <div className="mt-6 flex flex-wrap justify-center gap-2 text-xs sm:text-sm">
                 <span className="bg-zinc-800 px-3 py-1 rounded-full text-zinc-300">
-                  "Best intake for 991.1?"
+                  &quot;Best intake for 991.1?&quot;
                 </span>
                 <span className="bg-zinc-800 px-3 py-1 rounded-full text-zinc-300">
-                  "Exhaust recommendations?"
+                  &quot;Exhaust recommendations?&quot;
                 </span>
                 <span className="bg-zinc-800 px-3 py-1 rounded-full text-zinc-300">
-                  "Turbo upgrade options?"
+                  &quot;Turbo upgrade options?&quot;
                 </span>
               </div>
             </div>

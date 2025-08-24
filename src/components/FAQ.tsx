@@ -294,7 +294,7 @@ export default function FAQ() {
               Still have questions?
             </h3>
             <p className="text-sm sm:text-base text-zinc-300 mb-6">
-              Can't find what you're looking for? Ask ModBot 911 directly for personalized advice on your specific Porsche modifications.
+              Can&apos;t find what you&apos;re looking for? Ask ModBot 911 directly for personalized advice on your specific Porsche modifications.
             </p>
             <button
               onClick={() => {

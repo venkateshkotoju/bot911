@@ -19,8 +19,8 @@ type Product = {
 
 
 const ProductGrid = () => {
-  const { favorites, addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
-  const { compareProducts, addToCompare, removeFromCompare, isInComparison, canAddMore } = useComparison();
+  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
+  const { addToCompare, removeFromCompare, isInComparison, canAddMore } = useComparison();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedBrand, setSelectedBrand] = useState('All');
@@ -227,7 +227,7 @@ const ProductGrid = () => {
           <div className="text-6xl mb-4">🔍</div>
           <h3 className="text-xl font-semibold text-white mb-2">No products found</h3>
           <p className="text-zinc-400 mb-4">
-            Try adjusting your search terms or filters to find what you're looking for.
+            Try adjusting your search terms or filters to find what you&apos;re looking for.
           </p>
           <button
             onClick={() => {
