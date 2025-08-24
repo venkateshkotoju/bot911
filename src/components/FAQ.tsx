@@ -1,0 +1,315 @@
+import { useState } from 'react';
+import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
+
+type FAQItem = {
+  id: string;
+  question: string;
+  answer: string;
+  category: string;
+  keywords: string[];
+};
+
+const faqData: FAQItem[] = [
+  // Performance & Tuning
+  {
+    id: "power-gains-996",
+    question: "How much power can I gain from tuning my 996 Turbo?",
+    answer: "With a proper ECU tune like the Cobb Accessport V3, you can expect 60-80HP and 80-100TQ gains on a stock 996 Turbo. Combined with supporting mods like intake and exhaust, gains can reach 100+ HP. Always ensure your fuel system can support the additional power.",
+    category: "Performance & Tuning",
+    keywords: ["996", "turbo", "power", "gains", "tune", "cobb", "accessport"]
+  },
+  {
+    id: "best-first-mod",
+    question: "What's the best first modification for my 911?",
+    answer: "For most 911s, start with an ECU tune or piggyback system. It's the most cost-effective way to unlock power while maintaining reliability. For naturally aspirated models, consider a cold air intake and exhaust system. Always prioritize supporting modifications before adding boost.",
+    category: "Performance & Tuning",
+    keywords: ["first", "mod", "modification", "beginner", "ecu", "tune", "intake", "exhaust"]
+  },
+  {
+    id: "turbo-vs-na-mods",
+    question: "What's the difference between modding turbocharged vs naturally aspirated 911s?",
+    answer: "Turbocharged 911s (996/997/991/992 Turbo models) respond incredibly well to tuning with massive power gains from simple ECU modifications. NA models require more physical modifications like headers, intakes, and exhaust systems for noticeable gains. Turbo models are more mod-friendly but require careful attention to supporting systems.",
+    category: "Performance & Tuning",
+    keywords: ["turbo", "naturally aspirated", "na", "996", "997", "991", "992", "difference"]
+  },
+
+  // Suspension & Handling
+  {
+    id: "coilovers-vs-springs",
+    question: "Should I get coilovers or lowering springs for my 911?",
+    answer: "Coilovers like Bilstein B16 PSS10 offer adjustable damping and height, making them ideal for track use or fine-tuning. Lowering springs like H&R Sport Springs are more affordable and maintain OEM dampers. Choose coilovers if you want adjustability and track capability, springs for simple lowering and improved looks.",
+    category: "Suspension & Handling",
+    keywords: ["coilovers", "springs", "lowering", "bilstein", "h&r", "suspension", "track"]
+  },
+  {
+    id: "track-suspension-setup",
+    question: "What suspension setup is best for track days?",
+    answer: "For serious track use, go with adjustable coilovers like KW V3 or Bilstein B16. Set them up with slightly stiffer springs, aggressive alignment (more negative camber), and performance brake pads. Don't forget adjustable sway bars for fine-tuning balance. Start conservative and adjust based on track feedback.",
+    category: "Suspension & Handling",
+    keywords: ["track", "suspension", "coilovers", "kw", "bilstein", "alignment", "sway bars"]
+  },
+
+  // Exhaust & Sound
+  {
+    id: "exhaust-sound-comparison",
+    question: "How do different exhaust brands sound on a 911?",
+    answer: "Fabspeed offers aggressive, deep tones with significant volume. Akrapovič provides refined, exotic sound with titanium construction. Borla S-Type delivers classic American muscle car growl. AWE Tuning offers sophisticated sound with drone-free highway cruising. Choose based on your preference for aggression vs refinement.",
+    category: "Exhaust & Sound",
+    keywords: ["exhaust", "sound", "fabspeed", "akrapovic", "borla", "awe", "tone"]
+  },
+  {
+    id: "exhaust-drone-fix",
+    question: "How can I eliminate exhaust drone on highway cruising?",
+    answer: "Drone typically occurs around 2000-2500 RPM. Solutions include resonators, Helmholtz chambers, or switching to a different exhaust design. AWE Tuning exhausts are specifically engineered to eliminate drone. You can also add aftermarket resonators to existing systems or consider valve-controlled exhausts for on-demand sound control.",
+    category: "Exhaust & Sound",
+    keywords: ["drone", "highway", "resonator", "awe", "valve", "cruise"]
+  },
+
+  // Installation & DIY
+  {
+    id: "diy-difficulty-levels",
+    question: "What modifications can I do myself vs needing a shop?",
+    answer: "DIY-friendly: ECU tuning with Accessport, air filters, basic bolt-on parts. Intermediate: Exhaust systems, springs (with proper tools). Professional: Turbo upgrades, engine internals, alignment, complex electrical work. Always prioritize safety and don't hesitate to use a professional for critical systems.",
+    category: "Installation & DIY",
+    keywords: ["diy", "installation", "difficulty", "professional", "tools", "safety"]
+  },
+  {
+    id: "required-tools",
+    question: "What tools do I need for basic 911 modifications?",
+    answer: "Essential tools include metric socket set, torque wrench, jack and jack stands, basic hand tools, and OBD2 scanner. For suspension work, add spring compressors and alignment tools. For tuning, you'll need a laptop and quality diagnostic software. Invest in quality tools - your safety depends on them.",
+    category: "Installation & DIY",
+    keywords: ["tools", "socket", "torque", "jack", "obd2", "scanner", "laptop"]
+  },
+
+  // Reliability & Maintenance
+  {
+    id: "reliability-concerns",
+    question: "Will modifications affect my 911's reliability?",
+    answer: "Conservative modifications with quality parts typically don't hurt reliability. Aggressive tuning, cheap parts, or poor installation can cause issues. Stick to proven brands, conservative tunes, and proper supporting modifications. Regular maintenance becomes even more critical with modified cars.",
+    category: "Reliability & Maintenance",
+    keywords: ["reliability", "maintenance", "conservative", "quality", "proven"]
+  },
+  {
+    id: "warranty-implications",
+    question: "How do modifications affect my Porsche warranty?",
+    answer: "Any modification can potentially void warranty coverage for related components. Dealerships must prove the modification caused the failure under Magnuson-Moss Act. Keep all stock parts and documentation. Consider waiting until warranty expires for major modifications, or work with Porsche-authorized tuners when possible.",
+    category: "Reliability & Maintenance",
+    keywords: ["warranty", "dealership", "magnuson-moss", "stock", "authorized"]
+  },
+
+  // Budget & Planning
+  {
+    id: "budget-recommendations",
+    question: "How much should I budget for performance modifications?",
+    answer: "Budget 20-30% of your car's value for meaningful modifications. Start with $2000-3000 for basic bolt-ons (tune, intake, exhaust). Serious performance builds can cost $10,000-20,000+. Always budget for installation, supporting modifications, and potential repairs. Quality parts are worth the investment.",
+    category: "Budget & Planning",
+    keywords: ["budget", "cost", "investment", "planning", "value"]
+  },
+  {
+    id: "modification-order",
+    question: "In what order should I modify my 911?",
+    answer: "1. ECU tune (biggest bang for buck), 2. Supporting mods (intake, exhaust), 3. Suspension for handling, 4. Brakes for stopping power, 5. Aesthetic modifications. Always ensure supporting systems can handle increased performance before adding more power.",
+    category: "Budget & Planning",
+    keywords: ["order", "sequence", "planning", "supporting", "systems"]
+  },
+
+  // Model-Specific
+  {
+    id: "996-specific-mods",
+    question: "What are the best modifications for a 996 generation 911?",
+    answer: "For 996 Turbo: Cobb Accessport, upgraded intercoolers, exhaust system, and suspension. For 996 Carrera: Headers, intake, exhaust, and lightweight flywheel. Address the IMS bearing issue on early models before major modifications. The 996 responds well to bolt-on modifications.",
+    category: "Model-Specific",
+    keywords: ["996", "turbo", "carrera", "ims", "bearing", "intercooler", "headers"]
+  },
+  {
+    id: "997-vs-991-mods",
+    question: "Are there different considerations for 997 vs 991 modifications?",
+    answer: "997s have more aftermarket support and are easier to modify. 991s have more sophisticated electronics requiring specialized tuning. Both respond well to basic bolt-ons. 991s may require different exhaust routing due to rear suspension changes. 997.2 DFI engines need different tuning approaches than 997.1 models.",
+    category: "Model-Specific",
+    keywords: ["997", "991", "dfi", "electronics", "aftermarket", "routing"]
+  }
+];
+
+const categories = [
+  "All Categories",
+  "Performance & Tuning",
+  "Suspension & Handling", 
+  "Exhaust & Sound",
+  "Installation & DIY",
+  "Reliability & Maintenance",
+  "Budget & Planning",
+  "Model-Specific"
+];
+
+export default function FAQ() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All Categories');
+  const [openItems, setOpenItems] = useState<string[]>([]);
+
+  const toggleItem = (id: string) => {
+    setOpenItems(prev => 
+      prev.includes(id) 
+        ? prev.filter(item => item !== id)
+        : [...prev, id]
+    );
+  };
+
+  const filteredFAQs = faqData.filter(item => {
+    const matchesSearch = searchTerm === '' || 
+      item.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.answer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.keywords.some(keyword => keyword.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    const matchesCategory = selectedCategory === 'All Categories' || item.category === selectedCategory;
+    
+    return matchesSearch && matchesCategory;
+  });
+
+  return (
+    <section className="py-16 bg-zinc-900">
+      <div className="max-w-4xl mx-auto px-4">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-white mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+            Get expert answers to common Porsche 911 modification questions from our community of enthusiasts
+          </p>
+        </div>
+
+        {/* Search and Filter */}
+        <div className="mb-8 space-y-4">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search FAQ questions and answers..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full bg-zinc-800 text-white px-4 py-3 pl-12 rounded-lg border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            />
+            <svg
+              className="absolute left-4 top-3.5 h-5 w-5 text-zinc-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  selectedCategory === category
+                    ? 'bg-red-600 text-white'
+                    : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Results Count */}
+        <div className="mb-6">
+          <p className="text-zinc-400 text-sm">
+            {filteredFAQs.length} question{filteredFAQs.length !== 1 ? 's' : ''} found
+            {searchTerm && ` for "${searchTerm}"`}
+            {selectedCategory !== 'All Categories' && ` in ${selectedCategory}`}
+          </p>
+        </div>
+
+        {/* FAQ Items */}
+        <div className="space-y-4">
+          {filteredFAQs.length > 0 ? (
+            filteredFAQs.map((item) => (
+              <div key={item.id} className="bg-zinc-800 rounded-lg border border-zinc-700">
+                <button
+                  onClick={() => toggleItem(item.id)}
+                  className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-zinc-750 transition-colors"
+                >
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-white mb-1">
+                      {item.question}
+                    </h3>
+                    <span className="text-sm text-red-400 font-medium">
+                      {item.category}
+                    </span>
+                  </div>
+                  {openItems.includes(item.id) ? (
+                    <ChevronUpIcon className="h-5 w-5 text-zinc-400 ml-4 flex-shrink-0" />
+                  ) : (
+                    <ChevronDownIcon className="h-5 w-5 text-zinc-400 ml-4 flex-shrink-0" />
+                  )}
+                </button>
+                
+                {openItems.includes(item.id) && (
+                  <div className="px-6 pb-4">
+                    <div className="pt-4 border-t border-zinc-600">
+                      <p className="text-zinc-300 leading-relaxed whitespace-pre-line">
+                        {item.answer}
+                      </p>
+                      
+                      {/* Keywords for better searchability */}
+                      <div className="mt-4 pt-4 border-t border-zinc-700">
+                        <div className="flex flex-wrap gap-2">
+                          <span className="text-xs text-zinc-500">Related:</span>
+                          {item.keywords.slice(0, 5).map((keyword, index) => (
+                            <span
+                              key={index}
+                              className="text-xs bg-zinc-700 text-zinc-300 px-2 py-1 rounded"
+                            >
+                              {keyword}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))
+          ) : (
+            <div className="text-center py-12">
+              <div className="text-6xl mb-4">🤔</div>
+              <h3 className="text-xl font-semibold text-white mb-2">
+                No questions found
+              </h3>
+              <p className="text-zinc-400">
+                Try adjusting your search terms or category filter
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Contact Section */}
+        <div className="mt-12 text-center">
+          <div className="bg-zinc-800 rounded-lg p-8 border border-zinc-700">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Still have questions?
+            </h3>
+            <p className="text-zinc-300 mb-6">
+              Can't find what you're looking for? Ask ModBot 911 directly for personalized advice on your specific Porsche modifications.
+            </p>
+            <button
+              onClick={() => {
+                const chatSection = document.getElementById('chat-section');
+                if (chatSection) {
+                  chatSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
+            >
+              Ask ModBot 911
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

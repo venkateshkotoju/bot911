@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Allow crawling of all content except admin areas
+Disallow: /admin
+Disallow: /api/
+Disallow: /test-recommendations
+Disallow: /_next/
+Disallow: /dashboard
+
+# Allow important files
+Allow: /api/track
+
+# Sitemap location
+Sitemap: https://modbot911.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

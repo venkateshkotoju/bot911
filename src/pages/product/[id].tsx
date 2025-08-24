@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useFavorites } from '../../contexts/FavoritesContext';
 import { useComparison } from '../../contexts/ComparisonContext';
 import SocialShare from '../../components/SocialShare';
+import SEO, { generateProductSEO } from '../../components/SEO';
 import productsData from '../../data/products.json';
 
 type Product = {
@@ -50,8 +51,21 @@ export default function ProductPage({ product }: ProductPageProps) {
     );
   }
 
+  const productSEO = generateProductSEO(product);
+
   return (
-    <div className="min-h-screen bg-black text-white">
+    <>
+      <SEO
+        title={productSEO.title}
+        description={productSEO.description}
+        keywords={productSEO.keywords}
+        url={`https://modbot911.com/product/${product.id}`}
+        canonicalUrl={`https://modbot911.com/product/${product.id}`}
+        type="product"
+        image={product.image}
+        structuredData={productSEO.structuredData}
+      />
+      <div className="min-h-screen bg-black text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
         {/* Navigation */}
         <div className="mb-8">
@@ -321,7 +335,7 @@ export default function ProductPage({ product }: ProductPageProps) {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

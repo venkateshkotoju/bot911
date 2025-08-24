@@ -44,6 +44,13 @@ export default function Hero() {
             )}
           </Link>
           
+          <Link
+            href="/faq"
+            className="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors flex items-center gap-2"
+          >
+            ❓ FAQ
+          </Link>
+          
           <button
             onClick={() => setShowSubscriptionModal(true)}
             className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center gap-2"

@@ -1,0 +1,26 @@
+{
+  "name": "ModBot 911 - Porsche 911 Modification Expert",
+  "short_name": "ModBot 911",
+  "description": "Expert AI-powered advice on Porsche 911 modifications for 996, 997, 991, and 992 models. Smart product recommendations and tuning guides.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#dc2626",
+  "background_color": "#000000",
+  "categories": ["automotive", "lifestyle", "shopping"],
+  "lang": "en-US",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/modbot-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

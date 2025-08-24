@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import ProductGrid from '../components/sections/ProductGrid';
 import HotDeals from '../components/sections/HotDeals';
-
 import Hero from '../components/sections/Hero';
 import ChatBox from '../components/sections/ChatBox';
 import Footer from '../components/sections/Footer';
+import FAQ from '../components/FAQ';
+import SEO from '../components/SEO';
 
 export default function Home() {
   const [input, setInput] = useState('');
@@ -86,22 +87,42 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-black text-white font-sans">
-      <Hero />
-      <ProductGrid />
-      <HotDeals />
-      <ChatBox
-        input={input}
-        setInput={setInput}
-        messages={messages}
-        
-        error={error}
-        
-        loading={loading}
-        sendMessage={sendMessage}
-        clearHistory={clearHistory}
+    <>
+      <SEO
+        title="ModBot 911 - Expert Porsche 911 Modification Advice & AI-Powered Recommendations"
+        description="Get expert AI-powered advice on Porsche 911 modifications for 996, 997, 991, and 992 models. Smart product recommendations, tuning guides, performance parts, and installation tips."
+        keywords={[
+          'Porsche 911 modifications',
+          'Porsche tuning advice',
+          'AI Porsche recommendations',
+          'ModBot 911',
+          'Porsche performance parts',
+          '996 997 991 992 mods',
+          'Cobb Accessport Porsche',
+          'Porsche exhaust systems',
+          'Porsche suspension upgrades'
+        ]}
+        url="https://modbot911.com"
+        canonicalUrl="https://modbot911.com"
       />
-      <Footer />
-    </main>
+      <main className="min-h-screen bg-black text-white font-sans">
+        <Hero />
+        <ProductGrid />
+        <HotDeals />
+        <div id="chat-section">
+          <ChatBox
+            input={input}
+            setInput={setInput}
+            messages={messages}
+            error={error}
+            loading={loading}
+            sendMessage={sendMessage}
+            clearHistory={clearHistory}
+          />
+        </div>
+        <FAQ />
+        <Footer />
+      </main>
+    </>
   );
 }
