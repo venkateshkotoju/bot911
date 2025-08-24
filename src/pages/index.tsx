@@ -90,7 +90,7 @@ export default function Home() {
     <>
       <SEO
         title="ModBot 911 - Expert Porsche 911 Modification Advice & AI-Powered Recommendations"
-        description="Get expert AI-powered advice on Porsche 911 modifications for 996, 997, 991, and 992 models. Smart product recommendations, tuning guides, performance parts, and installation tips."
+        description="Get expert AI-powered advice on Porsche 911 modifications for 996, 997, 991, and 992 models. Smart product recommendations, tuning guides, performance parts, installation tips, and comprehensive FAQ."
         keywords={[
           'Porsche 911 modifications',
           'Porsche tuning advice',
@@ -100,10 +100,31 @@ export default function Home() {
           '996 997 991 992 mods',
           'Cobb Accessport Porsche',
           'Porsche exhaust systems',
-          'Porsche suspension upgrades'
+          'Porsche suspension upgrades',
+          'Porsche FAQ',
+          'mobile-friendly Porsche advice'
         ]}
         url="https://modbot911.com"
         canonicalUrl="https://modbot911.com"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "ModBot 911",
+          "applicationCategory": "AutomotiveApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "AI-powered Porsche 911 modification advice",
+            "Product recommendations with affiliate links",
+            "Comprehensive FAQ system",
+            "Mobile-optimized chat interface",
+            "Expert tuning guidance"
+          ]
+        }}
       />
       <main className="min-h-screen bg-black text-white font-sans">
         <Hero />

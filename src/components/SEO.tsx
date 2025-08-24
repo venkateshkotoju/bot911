@@ -205,6 +205,25 @@ export default function SEO({
         }}
       />
 
+      {/* Additional Mobile Optimization */}
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <meta name="format-detection" content="telephone=no" />
+      <meta name="HandheldFriendly" content="true" />
+      <meta name="MobileOptimized" content="width" />
+
+      {/* Performance optimization */}
+      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+      <link rel="dns-prefetch" href="//api.openai.com" />
+      <link rel="preload" href="/modbot-logo.png" as="image" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(finalStructuredData)
+        }}
+      />
+
       {/* Additional Performance & SEO Meta Tags */}
       <meta name="format-detection" content="telephone=no" />
       <meta name="mobile-web-app-capable" content="yes" />

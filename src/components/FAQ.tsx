@@ -166,30 +166,30 @@ export default function FAQ() {
   });
 
   return (
-    <section className="py-16 bg-zinc-900">
-      <div className="max-w-4xl mx-auto px-4">
+    <section className="py-12 sm:py-16 lg:py-20 bg-zinc-900" id="faq-section">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
             Frequently Asked Questions
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-zinc-400 max-w-2xl mx-auto px-2">
-            Get expert answers to common Porsche 911 modification questions from our community of enthusiasts
+          <p className="text-base sm:text-lg lg:text-xl text-zinc-400 max-w-3xl mx-auto px-2">
+            Get expert answers to common Porsche 911 modification questions from our community of enthusiasts and professionals
           </p>
         </div>
 
         {/* Search and Filter */}
-        <div className="mb-8 space-y-4">
+        <div className="mb-8 sm:mb-10 space-y-4">
           <div className="relative">
             <input
               type="text"
               placeholder="Search FAQ questions and answers..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-zinc-800 text-white px-4 py-3 pl-12 rounded-lg border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="w-full bg-zinc-800 text-white px-4 py-4 pl-12 rounded-lg border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent text-base min-h-[44px] touch-manipulation"
             />
             <svg
-              className="absolute left-4 top-3.5 h-5 w-5 text-zinc-400"
+              className="absolute left-4 top-4 h-5 w-5 text-zinc-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

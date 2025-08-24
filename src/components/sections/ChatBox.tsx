@@ -28,19 +28,42 @@ export default function ChatBox({
   }, [messages, loading]);
 
   return (
-    <section id="chat" className="max-w-4xl mx-auto px-4 sm:px-6 pb-20">
-      <div className="bg-zinc-900 p-6 sm:p-8 rounded-xl space-y-4 shadow-lg">
-        <h2 className="text-xl font-semibold text-white">ModBot Live Chat</h2>
+    <section id="chat" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div className="bg-zinc-900 p-4 sm:p-6 lg:p-8 rounded-xl space-y-4 sm:space-y-6 shadow-xl border border-zinc-700">
+        <div className="text-center">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">
+            💬 Chat with ModBot 911
+          </h2>
+          <p className="text-sm sm:text-base text-zinc-400">
+            Get expert AI-powered advice on your Porsche 911 modifications
+          </p>
+        </div>
 
         {error && (
-          <p className="bg-red-800 text-red-200 p-2 rounded">{error}</p>
+          <div className="bg-red-800/50 border border-red-600 text-red-200 p-3 sm:p-4 rounded-lg">
+            <p className="text-sm sm:text-base">{error}</p>
+          </div>
         )}
 
-        <div className="space-y-3 min-h-[300px] max-h-[400px] overflow-y-auto px-2">
+        <div className="space-y-3 sm:space-y-4 min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] max-h-[400px] sm:max-h-[500px] overflow-y-auto px-2 sm:px-3 scrollbar-thin scrollbar-thumb-zinc-600 scrollbar-track-zinc-800">
           {messages.length === 0 && (
-            <div className="text-center text-zinc-400 py-8">
-              <p className="text-lg mb-2">👋 Welcome to ModBot 911!</p>
-              <p className="text-sm">Ask me anything about Porsche 911 modifications</p>
+            <div className="text-center text-zinc-400 py-8 sm:py-12">
+              <div className="text-4xl sm:text-5xl lg:text-6xl mb-4">👋</div>
+              <p className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2">Welcome to ModBot 911!</p>
+              <p className="text-sm sm:text-base lg:text-lg text-zinc-500 max-w-md mx-auto">
+                Ask me anything about Porsche 911 modifications, performance upgrades, or installation advice
+              </p>
+              <div className="mt-6 flex flex-wrap justify-center gap-2 text-xs sm:text-sm">
+                <span className="bg-zinc-800 px-3 py-1 rounded-full text-zinc-300">
+                  "Best intake for 991.1?"
+                </span>
+                <span className="bg-zinc-800 px-3 py-1 rounded-full text-zinc-300">
+                  "Exhaust recommendations?"
+                </span>
+                <span className="bg-zinc-800 px-3 py-1 rounded-full text-zinc-300">
+                  "Turbo upgrade options?"
+                </span>
+              </div>
             </div>
           )}
           
@@ -86,7 +109,7 @@ export default function ChatBox({
                 </div>
               </div>
             );
-          })}}
+          })}
 
           {loading && (
             <div className="flex justify-start">
@@ -110,48 +133,51 @@ export default function ChatBox({
           <div ref={messagesEndRef} />
         </div>
 
-        <div className="flex gap-2">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' && !loading && input.trim()) {
-                sendMessage();
-              }
-            }}
-            placeholder="Ask something like: Best intake for a 991.1?"
-            disabled={loading}
-            className="flex-grow px-4 py-3 rounded-lg bg-zinc-800 text-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-          />
-          <button
-            onClick={sendMessage}
-            disabled={loading || !input.trim()}
-            className="px-6 py-3 bg-red-600 hover:bg-red-700 disabled:bg-zinc-600 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors flex items-center gap-2"
-          >
-            {loading ? (
-              <>
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                Sending
-              </>
-            ) : (
-              <>
-                <span>💬</span>
-                Ask
-              </>
-            )}
-          </button>
-        </div>
+        <div className="space-y-3 sm:space-y-4">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && !loading && input.trim()) {
+                  sendMessage();
+                }
+              }}
+              placeholder="Ask something like: Best intake for a 991.1?"
+              disabled={loading}
+              className="flex-grow px-4 py-4 rounded-lg bg-zinc-800 text-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all text-base min-h-[44px] touch-manipulation"
+            />
+            <button
+              onClick={sendMessage}
+              disabled={loading || !input.trim()}
+              className="px-6 py-4 bg-red-600 hover:bg-red-700 disabled:bg-zinc-600 disabled:cursor-not-allowed text-white rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 min-h-[44px] touch-manipulation text-base"
+            >
+              {loading ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <span className="hidden sm:inline">Sending</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-lg">💬</span>
+                  <span className="hidden sm:inline">Ask ModBot</span>
+                  <span className="sm:hidden">Ask</span>
+                </>
+              )}
+            </button>
+          </div>
 
-        <div className="flex justify-between items-center text-xs">
-          <span className="text-zinc-500">
-            {messages.length > 0 && `${Math.ceil(messages.length / 2)} messages`}
-          </span>
-          <button
-            onClick={clearHistory}
-            className="text-zinc-400 hover:text-red-400 underline transition-colors"
-          >
-            🗑️ Clear History
-          </button>
+          <div className="flex justify-between items-center text-xs sm:text-sm">
+            <span className="text-zinc-500">
+              {messages.length > 0 && `${Math.ceil(messages.length / 2)} messages`}
+            </span>
+            <button
+              onClick={clearHistory}
+              className="text-zinc-400 hover:text-red-400 underline transition-colors p-2 min-h-[44px] touch-manipulation"
+            >
+              🗑️ <span className="hidden sm:inline">Clear History</span><span className="sm:hidden">Clear</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>

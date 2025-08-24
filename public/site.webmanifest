@@ -1,31 +1,70 @@
 {
-  "name": "ModBot 911 - Porsche 911 Modification Expert",
+  "name": "ModBot 911 - Porsche 911 Modification Assistant",
   "short_name": "ModBot 911",
-  "description": "Expert AI-powered advice on Porsche 911 modifications for 996, 997, 991, and 992 models. Smart product recommendations and tuning guides.",
+  "description": "Expert AI-powered advice for Porsche 911 modifications, tuning, and performance upgrades",
   "start_url": "/",
   "display": "standalone",
-  "orientation": "portrait-primary",
-  "theme_color": "#dc2626",
   "background_color": "#000000",
-  "categories": ["automotive", "lifestyle", "shopping"],
+  "theme_color": "#dc2626",
+  "orientation": "portrait-primary",
+  "categories": ["automotive", "tools", "productivity"],
   "lang": "en-US",
+  "dir": "ltr",
   "scope": "/",
-  "prefer_related_applications": false,
-  "display_override": ["window-controls-overlay", "standalone"],
-  "edge_side_panel": {
-    "preferred_width": 480
-  },
   "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
     {
       "src": "/modbot-logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "375x812",
+      "type": "image/png",
+      "form_factor": "narrow"
     },
     {
-      "src": "/favicon.ico",
-      "sizes": "48x48",
-      "type": "image/x-icon"
+      "src": "/screenshot-desktop.png", 
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
     }
-  ]
+  ],
+  "shortcuts": [
+    {
+      "name": "Chat with ModBot",
+      "url": "/#chat-section",
+      "description": "Start chatting with the AI assistant"
+    },
+    {
+      "name": "Browse FAQ",
+      "url": "/faq",
+      "description": "Browse frequently asked questions"
+    },
+    {
+      "name": "Product Recommendations",
+      "url": "/#products",
+      "description": "View product recommendations"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }
