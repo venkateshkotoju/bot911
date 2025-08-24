@@ -169,11 +169,11 @@ export default function FAQ() {
     <section className="py-16 bg-zinc-900">
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-zinc-400 max-w-2xl mx-auto px-2">
             Get expert answers to common Porsche 911 modification questions from our community of enthusiasts
           </p>
         </div>
@@ -203,7 +203,7 @@ export default function FAQ() {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors min-h-[40px] ${
                   selectedCategory === category
                     ? 'bg-red-600 text-white'
                     : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
@@ -231,33 +231,33 @@ export default function FAQ() {
               <div key={item.id} className="bg-zinc-800 rounded-lg border border-zinc-700">
                 <button
                   onClick={() => toggleItem(item.id)}
-                  className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-zinc-750 transition-colors"
+                  className="w-full px-4 sm:px-6 py-4 text-left flex justify-between items-center hover:bg-zinc-750 transition-colors"
                 >
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-white mb-1">
+                  <div className="flex-1 pr-4">
+                    <h3 className="text-base sm:text-lg font-semibold text-white mb-1">
                       {item.question}
                     </h3>
-                    <span className="text-sm text-red-400 font-medium">
+                    <span className="text-xs sm:text-sm text-red-400 font-medium">
                       {item.category}
                     </span>
                   </div>
                   {openItems.includes(item.id) ? (
-                    <ChevronUpIcon className="h-5 w-5 text-zinc-400 ml-4 flex-shrink-0" />
+                    <ChevronUpIcon className="h-5 w-5 text-zinc-400 flex-shrink-0" />
                   ) : (
-                    <ChevronDownIcon className="h-5 w-5 text-zinc-400 ml-4 flex-shrink-0" />
+                    <ChevronDownIcon className="h-5 w-5 text-zinc-400 flex-shrink-0" />
                   )}
                 </button>
                 
                 {openItems.includes(item.id) && (
-                  <div className="px-6 pb-4">
+                  <div className="px-4 sm:px-6 pb-4">
                     <div className="pt-4 border-t border-zinc-600">
-                      <p className="text-zinc-300 leading-relaxed whitespace-pre-line">
+                      <p className="text-sm sm:text-base text-zinc-300 leading-relaxed whitespace-pre-line">
                         {item.answer}
                       </p>
                       
                       {/* Keywords for better searchability */}
                       <div className="mt-4 pt-4 border-t border-zinc-700">
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-1 sm:gap-2">
                           <span className="text-xs text-zinc-500">Related:</span>
                           {item.keywords.slice(0, 5).map((keyword, index) => (
                             <span
@@ -288,12 +288,12 @@ export default function FAQ() {
         </div>
 
         {/* Contact Section */}
-        <div className="mt-12 text-center">
-          <div className="bg-zinc-800 rounded-lg p-8 border border-zinc-700">
-            <h3 className="text-2xl font-bold text-white mb-4">
+        <div className="mt-8 sm:mt-12 text-center">
+          <div className="bg-zinc-800 rounded-lg p-6 sm:p-8 border border-zinc-700">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">
               Still have questions?
             </h3>
-            <p className="text-zinc-300 mb-6">
+            <p className="text-sm sm:text-base text-zinc-300 mb-6">
               Can't find what you're looking for? Ask ModBot 911 directly for personalized advice on your specific Porsche modifications.
             </p>
             <button
@@ -303,7 +303,7 @@ export default function FAQ() {
                   chatSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
+              className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 sm:px-8 py-3 rounded-lg transition-colors text-sm sm:text-base"
             >
               Ask ModBot 911
             </button>

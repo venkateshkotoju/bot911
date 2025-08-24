@@ -10,6 +10,11 @@
   "categories": ["automotive", "lifestyle", "shopping"],
   "lang": "en-US",
   "scope": "/",
+  "prefer_related_applications": false,
+  "display_override": ["window-controls-overlay", "standalone"],
+  "edge_side_panel": {
+    "preferred_width": 480
+  },
   "icons": [
     {
       "src": "/modbot-logo.png",

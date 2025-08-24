@@ -78,6 +78,13 @@ export default function FAQPage() {
                   Admin
                 </Link>
               </nav>
+              
+              {/* Mobile Menu Button */}
+              <div className="md:hidden">
+                <Link href="/" className="text-zinc-300 hover:text-white transition-colors text-sm">
+                  ← Back
+                </Link>
+              </div>
             </div>
           </div>
         </header>
