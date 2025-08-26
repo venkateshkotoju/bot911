@@ -48,18 +48,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Add previous conversation context (limit to last 6 messages to stay within token limits)
       ...conversationHistory.slice(-6).map((msg: string) => {
         if (msg.startsWith('👤 You:')) {
-          return { role: 'user', content: msg.replace('👤 You: ', '') };
+          return { role: 'user' as const, content: msg.replace('👤 You: ', '') };
         } else if (msg.startsWith('🚗 ModBot 911:')) {
-          return { role: 'assistant', content: msg.replace('🚗 ModBot 911: ', '') };
+          return { role: 'assistant' as const, content: msg.replace('🚗 ModBot 911: ', '') };
         }
         return null;
       }).filter(Boolean),
       // Add current query
-      { role: 'user', content: query },
+      { role: 'user' as const, content: query },
     ];
     const chatResponse = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
-      messages: messages as any,
+      messages: messages.filter(Boolean) as Array<{ role: 'system' | 'user' | 'assistant'; content: string }>,
       temperature: 0.7,
       max_tokens: 500, // Limit response length
     });

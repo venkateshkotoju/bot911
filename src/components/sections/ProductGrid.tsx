@@ -3,6 +3,7 @@ import productsData from '../../data/products.json';
 import { useFavorites } from '../../contexts/FavoritesContext';
 import { useComparison } from '../../contexts/ComparisonContext';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type Product = {
   id: string;
@@ -262,9 +263,11 @@ const ProductGrid = () => {
 
                 <div className="relative">
                   <div className="overflow-hidden rounded mb-4 border border-zinc-800">
-                    <img
+                    <Image
                       src={product.image}
                       alt={product.name}
+                      width={300}
+                      height={160}
                       className="object-cover h-40 w-full transform hover:scale-105 transition-transform duration-300 ease-in-out"
                     />
                   </div>

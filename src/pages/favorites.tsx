@@ -1,5 +1,6 @@
 import { useFavorites } from '../contexts/FavoritesContext';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Favorites() {
   const { favorites, removeFromFavorites, clearFavorites } = useFavorites();
@@ -72,9 +73,11 @@ export default function Favorites() {
 
                 <div className="relative">
                   <div className="overflow-hidden rounded mb-4 border border-zinc-800">
-                    <img
+                    <Image
                       src={product.image}
                       alt={product.name}
+                      width={300}
+                      height={160}
                       className="object-cover h-40 w-full transform hover:scale-105 transition-transform duration-300 ease-in-out"
                     />
                   </div>

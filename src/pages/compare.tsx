@@ -1,5 +1,6 @@
 import { useComparison } from '../contexts/ComparisonContext';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Compare() {
   const { compareProducts, removeFromCompare, clearComparison } = useComparison();
@@ -64,9 +65,11 @@ export default function Compare() {
             {compareProducts.map((product) => (
               <div key={product.id} className="relative">
                 <div className="aspect-square rounded-lg overflow-hidden border border-zinc-700">
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.name}
+                    width={300}
+                    height={300}
                     className="w-full h-full object-cover"
                   />
                 </div>

@@ -54,7 +54,7 @@ export default function SubscriptionModal({ isOpen, onClose }: SubscriptionModal
       } else {
         setError(data.error || 'Subscription failed');
       }
-    } catch (err) {
+    } catch {
       setError('Network error. Please try again.');
     } finally {
       setLoading(false);

@@ -68,9 +68,10 @@ export default function Home() {
       const botMessage = `🚗 ModBot 911: ${data.reply}`;
       setMessages(prev => [...prev, botMessage]);
       
-    } catch (err: any) {
+    } catch (err: unknown) {
       setLoading(false);
-      setError(`❌ Network Error: ${err.message || 'Connection failed. Please try again.'}`);
+      const errorMessage = err instanceof Error ? err.message : 'Connection failed. Please try again.';
+      setError(`❌ Network Error: ${errorMessage}`);
       // Remove the user message if there was an error
       setMessages(prev => prev.slice(0, -1));
       setInput(currentInput); // Restore input

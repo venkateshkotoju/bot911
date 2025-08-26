@@ -16,7 +16,11 @@ export default function TestRecommendations() {
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
   const [explanation, setExplanation] = useState('');
   const [loading, setLoading] = useState(false);
-  const [metadata, setMetadata] = useState<any>(null);
+  const [metadata, setMetadata] = useState<{
+    totalRecommendations: number;
+    topScore: number;
+    averageScore: number;
+  } | null>(null);
 
   const testQueries = [
     "I want more power for my 997 Turbo",
@@ -141,7 +145,7 @@ export default function TestRecommendations() {
           <div className="bg-zinc-900 p-6 rounded-xl">
             <h3 className="text-lg font-semibold mb-4">🎯 Smart Recommendations</h3>
             <div className="space-y-4">
-              {recommendations.map((product, index) => (
+              {recommendations.map((product) => (
                 <div key={product.id} className="bg-zinc-800 p-4 rounded-lg">
                   <div className="flex justify-between items-start mb-2">
                     <div>

@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useFavorites } from '../../contexts/FavoritesContext';
 import { useComparison } from '../../contexts/ComparisonContext';
 import SocialShare from '../../components/SocialShare';
@@ -51,7 +52,10 @@ export default function ProductPage({ product }: ProductPageProps) {
     );
   }
 
-  const productSEO = generateProductSEO(product);
+  const productSEO = generateProductSEO({
+    ...product,
+    description: product.description || `High-quality ${product.category.toLowerCase()} for your Porsche 911`
+  });
 
   return (
     <>
@@ -79,10 +83,13 @@ export default function ProductPage({ product }: ProductPageProps) {
           {/* Product Image */}
           <div className="relative">
             <div className="aspect-square rounded-xl overflow-hidden border border-zinc-700 bg-zinc-900">
-              <img
+              <Image
                 src={product.image}
                 alt={product.name}
+                width={600}
+                height={600}
                 className="w-full h-full object-cover"
+                priority
               />
             </div>
             
@@ -322,9 +329,11 @@ export default function ProductPage({ product }: ProductPageProps) {
                   href={`/product/${relatedProduct.id}`}
                   className="bg-zinc-900 border border-zinc-700 p-4 rounded-xl hover:border-red-600 transition-colors"
                 >
-                  <img
+                  <Image
                     src={relatedProduct.image}
                     alt={relatedProduct.name}
+                    width={300}
+                    height={128}
                     className="w-full h-32 object-cover rounded mb-3"
                   />
                   <h3 className="font-semibold text-white mb-1">{relatedProduct.name}</h3>

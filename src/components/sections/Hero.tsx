@@ -2,6 +2,7 @@ import { useFavorites } from '../../contexts/FavoritesContext';
 import { useComparison } from '../../contexts/ComparisonContext';
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import SubscriptionModal from '../SubscriptionModal';
 
 export default function Hero() {
@@ -15,10 +16,13 @@ export default function Hero() {
         {/* Logo and Brand */}
         <div className="flex flex-col items-center mb-6 sm:mb-8">
           <div className="flex justify-center items-center mb-3 sm:mb-4">
-            <img
+            <Image
               src="/modbot-logo.png"
               alt="ModBot 911 Logo"
+              width={56}
+              height={56}
               className="h-10 sm:h-12 lg:h-14 w-auto"
+              priority
             />
           </div>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">

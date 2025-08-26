@@ -1,17 +1,23 @@
 import products from '../../data/products.json';
+import Image from 'next/image';
 
 type Product = {
   name: string;
   category: string;
   image: string;
-  link: string;
+  affiliateUrl: string;
 };
 
 // Group products by category
 const grouped: Record<string, Product[]> = products.reduce((acc, product) => {
   const cat = product.category || 'Other';
   if (!acc[cat]) acc[cat] = [];
-  acc[cat].push(product);
+  acc[cat].push({
+    name: product.name,
+    category: product.category,
+    image: product.image,
+    affiliateUrl: product.affiliateUrl
+  });
   return acc;
 }, {} as Record<string, Product[]>);
 
@@ -28,14 +34,16 @@ export default function HotDeals() {
               {items.map((product) => (
                 <a
                   key={product.name}
-                  href={product.link}
+                  href={product.affiliateUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-zinc-800 hover:bg-zinc-700 p-4 rounded-xl transition"
                 >
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.name}
+                    width={200}
+                    height={128}
                     className="w-full h-32 object-cover rounded"
                   />
                   <p className="mt-2 text-xs sm:text-sm text-white">{product.name}</p>

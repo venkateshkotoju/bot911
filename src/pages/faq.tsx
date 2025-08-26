@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import FAQ from '@/components/FAQ';
 import SEO from '@/components/SEO';
 
@@ -56,9 +57,11 @@ export default function FAQPage() {
           <div className="max-w-6xl mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
               <Link href="/" className="flex items-center space-x-3">
-                <img
+                <Image
                   src="/modbot-logo.png"
                   alt="ModBot 911 Logo"
+                  width={40}
+                  height={40}
                   className="h-10 w-10"
                 />
                 <span className="text-xl font-bold text-white">ModBot 911</span>

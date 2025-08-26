@@ -244,7 +244,19 @@ export default function SEO({
 }
 
 // Export additional SEO utilities
-export const generateProductSEO = (product: any) => ({
+export const generateProductSEO = (product: {
+  name: string;
+  brand: string;
+  category: string;
+  description: string;
+  image: string;
+  price: number;
+  rating: number;
+  affiliateUrl: string;
+  keywords: string[];
+  specifications?: { compatibility?: string; powerGains?: string };
+  installationDifficulty?: string;
+}) => ({
   title: `${product.name} - ${product.brand} | Porsche 911 Parts`,
   description: `${product.description} Compatible with Porsche 911 models. Expert reviews, installation guides, and best prices.`,
   keywords: [
