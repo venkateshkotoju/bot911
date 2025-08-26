@@ -10,6 +10,71 @@ type FAQItem = {
 };
 
 const faqData: FAQItem[] = [
+  // General Porsche
+  {
+    id: "porsche-history",
+    question: "What is the history of Porsche?",
+    answer: "Porsche was founded in 1931 by Ferdinand Porsche, the engineer behind the original Volkswagen Beetle. The first Porsche-badged car was the 1948 Porsche 356, followed by the iconic 911 in 1963. Porsche has become one of the most respected automotive brands, known for its engineering excellence and driving dynamics.",
+    category: "General Porsche",
+    keywords: ["history", "founding", "ferdinand", "356", "brand"]
+  },
+  {
+    id: "porsche-logo",
+    question: "What does the Porsche logo mean?",
+    answer: "The Porsche logo features a heraldic coat of arms from the Free People's State of Württemberg, representing the region where Porsche is based in Stuttgart, Germany. The black and red colors represent the state colors, and the horse symbolizes the Stuttgart region (which means 'horse farm' in old German). The crest is topped with a red-white checkerboard pattern from the city of Stuttgart.",
+    category: "General Porsche",
+    keywords: ["logo", "symbol", "stuttgart", "colors", "heraldic"]
+  },
+  {
+    id: "porsche-models",
+    question: "What are the different Porsche model lines?",
+    answer: "Porsche offers a diverse lineup including: 911 (iconic sports car), 718 Boxster/Cayman (mid-engine roadster/coupe), Panamera (luxury sedan/coupe), Cayenne (SUV), Macan (compact SUV), Taycan (electric sedan), and the Motorsport models like GT3/GT2. Each model maintains Porsche's signature driving dynamics and engineering excellence.",
+    category: "General Porsche",
+    keywords: ["models", "911", "panamera", "cayenne", "taycan", "718"]
+  },
+  {
+    id: "porsche-engineering",
+    question: "What makes Porsche engineering special?",
+    answer: "Porsche is known for its engineering excellence, particularly rear-engine/rear-wheel drive layouts, high-revving engines, and motorsport-derived technology. Their 'Intelligent Performance' philosophy combines power with efficiency. Porsche also pioneered technologies like PDK dual-clutch transmission and active aerodynamics in production cars.",
+    category: "General Porsche",
+    keywords: ["engineering", "technology", "pdk", "aerodynamics", "performance"]
+  },
+  // ModBot 911 Information
+  {
+    id: "what-is-modbot",
+    question: "What is ModBot 911?",
+    answer: "ModBot 911 is an AI-powered chatbot specifically designed to provide expert advice on Porsche 911 modifications. Built using Next.js and powered by OpenAI's GPT, it offers personalized recommendations on performance upgrades, handling improvements, and other modifications for Porsche 911 owners.",
+    category: "ModBot 911 Information",
+    keywords: ["modbot", "chatbot", "ai", "gpt", "next.js", "porsche 911"]
+  },
+  {
+    id: "how-modbot-knows",
+    question: "How does ModBot 911 know about Porsche models?",
+    answer: "ModBot 911 has been trained on extensive Porsche 911 knowledge through structured data, a comprehensive products database, and a sophisticated recommendation engine. It understands different 911 generations (996, 997, 991, etc.) and can provide model-specific advice on modifications and upgrades.",
+    category: "ModBot 911 Information",
+    keywords: ["knowledge", "data", "training", "porsche", "911", "models"]
+  },
+  {
+    id: "what-questions-modbot",
+    question: "What kind of questions can I ask ModBot 911?",
+    answer: "You can ask about performance upgrades, handling improvements, exhaust systems, suspension modifications, budget planning, installation difficulty, and more. ModBot 911 excels at helping with ECU tuning, power gains, part compatibility, and recommending modifications based on your specific Porsche model and goals.",
+    category: "ModBot 911 Information",
+    keywords: ["questions", "ask", "query", "help", "support"]
+  },
+  {
+    id: "trust-recommendations",
+    question: "Can I trust ModBot 911's recommendations?",
+    answer: "Yes, ModBot 911 provides data-driven recommendations based on technical specifications, proven products from established brands, and safety considerations. All recommendations consider your specific car model, budget, and goals, with detailed explanations for each suggestion.",
+    category: "ModBot 911 Information",
+    keywords: ["trust", "recommendations", "reliable", "advice", "safety"]
+  },
+  {
+    id: "personal-data",
+    question: "Does ModBot 911 store my personal data?",
+    answer: "ModBot 911 follows privacy-first principles. Basic chat functionality works anonymously without storing personal data. Email addresses from newsletter subscriptions are stored in a development file (subscribers.json) and would use a proper email service in production. No user accounts or chat sessions are stored by default.",
+    category: "ModBot 911 Information",
+    keywords: ["privacy", "data", "storage", "email", "newsletter", "personal"]
+  },
   // Performance & Tuning
   {
     id: "power-gains-996",
@@ -132,6 +197,8 @@ const faqData: FAQItem[] = [
 
 const categories = [
   "All Categories",
+  "General Porsche",
+  "ModBot 911 Information",
   "Performance & Tuning",
   "Suspension & Handling", 
   "Exhaust & Sound",
