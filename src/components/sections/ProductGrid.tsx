@@ -352,10 +352,10 @@ const ProductGrid = () => {
                     disabled={!canAddMore && !isInComparison(product.id)}
                     className={`px-3 py-2 rounded text-sm transition-colors ${
                       isInComparison(product.id)
-                        ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                        ? 'bg-zinc-600 hover:bg-zinc-500 text-white border border-zinc-500'
                         : canAddMore
-                        ? 'bg-zinc-700 hover:bg-zinc-600 text-white'
-                        : 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
+                        ? 'bg-zinc-700 hover:bg-zinc-600 text-white border border-zinc-600'
+                        : 'bg-zinc-800 text-zinc-500 cursor-not-allowed border border-zinc-700'
                     }`}
                     title={isInComparison(product.id) ? 'Remove from comparison' : 'Add to comparison'}
                   >

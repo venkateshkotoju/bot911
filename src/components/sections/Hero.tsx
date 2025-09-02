@@ -37,7 +37,7 @@ export default function Hero() {
         <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
           <Link
             href="/favorites"
-            className="relative px-4 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition-colors flex items-center justify-center gap-2 text-sm sm:text-base font-medium min-h-[44px] touch-manipulation"
+            className="relative px-4 py-3 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 hover:border-zinc-600 text-white rounded-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base font-medium min-h-[44px] touch-manipulation"
           >
             <span className="text-lg">❤️</span>
             <span className="hidden sm:inline">Favorites</span>
@@ -51,13 +51,13 @@ export default function Hero() {
           
           <Link
             href="/compare"
-            className="relative px-4 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition-colors flex items-center justify-center gap-2 text-sm sm:text-base font-medium min-h-[44px] touch-manipulation"
+            className="relative px-4 py-3 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 hover:border-zinc-600 text-white rounded-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base font-medium min-h-[44px] touch-manipulation"
           >
             <span className="text-lg">⚖️</span>
             <span className="hidden sm:inline">Compare</span>
             <span className="sm:hidden">Compare</span>
             {compareProducts.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
                 {compareProducts.length}
               </span>
             )}
@@ -65,7 +65,7 @@ export default function Hero() {
           
           <Link
             href="/faq"
-            className="px-4 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition-colors flex items-center justify-center gap-2 text-sm sm:text-base font-medium min-h-[44px] touch-manipulation"
+            className="px-4 py-3 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 hover:border-zinc-600 text-white rounded-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base font-medium min-h-[44px] touch-manipulation"
           >
             <span className="text-lg">❓</span>
             <span>FAQ</span>
@@ -73,7 +73,7 @@ export default function Hero() {
           
           <button
             onClick={() => setShowSubscriptionModal(true)}
-            className="px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center justify-center gap-2 text-sm sm:text-base font-medium min-h-[44px] touch-manipulation"
+            className="px-4 py-3 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 hover:border-zinc-600 text-white rounded-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base font-medium min-h-[44px] touch-manipulation"
           >
             <span className="text-lg">📧</span>
             <span className="hidden sm:inline">Subscribe</span>
@@ -82,7 +82,7 @@ export default function Hero() {
           
           <Link
             href="/admin"
-            className="px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors flex items-center justify-center gap-2 text-sm sm:text-base font-medium min-h-[44px] touch-manipulation col-span-2 sm:col-span-1"
+            className="px-4 py-3 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 hover:border-zinc-600 text-white rounded-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base font-medium min-h-[44px] touch-manipulation col-span-2 sm:col-span-1"
           >
             <span className="text-lg">🛠️</span>
             <span>Admin Panel</span>
@@ -93,7 +93,7 @@ export default function Hero() {
         <div className="text-center">
           <a 
             href="#chat-section" 
-            className="inline-block px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors text-base sm:text-lg font-semibold min-h-[44px] touch-manipulation"
+            className="inline-block px-8 py-4 bg-red-600 hover:bg-red-700 border border-red-500 hover:border-red-400 text-white rounded-lg transition-all text-base sm:text-lg font-semibold min-h-[44px] touch-manipulation shadow-lg hover:shadow-xl"
           >
             Start Chatting with ModBot 🚗
           </a>
