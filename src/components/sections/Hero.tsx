@@ -15,20 +15,25 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Logo and Brand */}
         <div className="flex flex-col items-center mb-6 sm:mb-8">
-          <div className="flex justify-center items-center mb-3 sm:mb-4">
-            <Image
-              src="/modbot-logo.png"
-              alt="ModBot 911 Logo"
-              width={56}
-              height={56}
-              className="h-10 sm:h-12 lg:h-14 w-auto"
-              priority
-            />
-          </div>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">
-            ModBot 911
-          </h1>
-          <p className="text-sm sm:text-base lg:text-lg text-zinc-400 max-w-2xl">
+          <Link href="/" className="flex justify-center items-center mb-3 sm:mb-4 group">
+            <div className="relative">
+              <Image
+                src="/modbot-logo.png"
+                alt="ModBot 911 Logo"
+                width={64}
+                height={64}
+                className="h-12 sm:h-14 lg:h-16 w-auto transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-lg"
+                priority
+              />
+              <div className="absolute inset-0 bg-red-600/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+            </div>
+          </Link>
+          <Link href="/" className="group">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors duration-300">
+              ModBot 911
+            </h1>
+          </Link>
+          <p className="text-sm sm:text-base lg:text-lg text-zinc-400 max-w-2xl text-center leading-relaxed">
             Your AI-powered Porsche 911 modification companion - Expert advice, intelligent recommendations, and community knowledge
           </p>
         </div>
