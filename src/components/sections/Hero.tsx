@@ -34,7 +34,7 @@ export default function Hero() {
             </h1>
           </Link>
           <p className="text-sm sm:text-base lg:text-lg text-zinc-400 max-w-2xl text-center leading-relaxed">
-            Your AI-powered Porsche 911 modification companion - Expert advice, intelligent recommendations, and community knowledge
+            <span className="text-red-400 font-semibold">Unlock your 911's true potential.</span> Get instant expert advice on performance mods, proven product recommendations, and data-driven tuning guidance—all powered by AI and real Porsche expertise.
           </p>
         </div>
         
@@ -98,10 +98,13 @@ export default function Hero() {
         <div className="text-center">
           <a 
             href="#chat-section" 
-            className="inline-block px-8 py-4 bg-red-600 hover:bg-red-700 border border-red-500 hover:border-red-400 text-white rounded-lg transition-all text-base sm:text-lg font-semibold min-h-[44px] touch-manipulation shadow-lg hover:shadow-xl"
+            className="inline-block px-8 py-4 bg-red-600 hover:bg-red-700 border border-red-500 hover:border-red-400 text-white rounded-lg transition-all text-base sm:text-lg font-semibold min-h-[44px] touch-manipulation shadow-lg hover:shadow-xl transform hover:scale-105"
           >
-            Start Chatting with ModBot 🚗
+            🚀 Get Expert Mod Advice Now
           </a>
+          <p className="text-xs sm:text-sm text-zinc-500 mt-3">
+            Free • Instant Answers • No Sign-up Required
+          </p>
         </div>
       </div>
       

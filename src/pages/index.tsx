@@ -89,20 +89,21 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="ModBot 911 - Expert Porsche 911 Modification Advice & AI-Powered Recommendations"
-        description="Get expert AI-powered advice on Porsche 911 modifications for 996, 997, 991, and 992 models. Smart product recommendations, tuning guides, performance parts, installation tips, and comprehensive FAQ."
+        title="ModBot 911 - Expert AI-Powered Porsche 911 Modification Advice & Smart Product Recommendations"
+        description="Get instant expert advice on Porsche 911 modifications. AI-powered recommendations for performance parts, tuning guides, installation tips, and comprehensive FAQ for 996, 997, 991, 992 models. Free, instant, and trusted by thousands of enthusiasts."
         keywords={[
           'Porsche 911 modifications',
-          'Porsche tuning advice',
-          'AI Porsche recommendations',
-          'ModBot 911',
-          'Porsche performance parts',
-          '996 997 991 992 mods',
-          'Cobb Accessport Porsche',
-          'Porsche exhaust systems',
-          'Porsche suspension upgrades',
-          'Porsche FAQ',
-          'mobile-friendly Porsche advice'
+          'AI Porsche tuning advice',
+          'ModBot 911 expert recommendations',
+          'Porsche performance parts guide',
+          '996 997 991 992 modification tips',
+          'Cobb Accessport Porsche tuning',
+          'Porsche exhaust system reviews',
+          '911 suspension upgrade guide',
+          'Porsche modification FAQ',
+          'instant Porsche modification advice',
+          'mobile Porsche tuning consultant',
+          'free Porsche modification help'
         ]}
         url="https://modbot911.com"
         canonicalUrl="https://modbot911.com"
@@ -112,18 +113,33 @@ export default function Home() {
           "name": "ModBot 911",
           "applicationCategory": "AutomotiveApplication",
           "operatingSystem": "All",
+          "description": "AI-powered Porsche 911 modification expert providing instant advice, smart product recommendations, and comprehensive tuning guidance.",
+          "url": "https://modbot911.com",
           "offers": {
             "@type": "Offer",
             "price": "0",
-            "priceCurrency": "USD"
+            "priceCurrency": "USD",
+            "description": "Free AI-powered Porsche modification advice"
           },
           "featureList": [
             "AI-powered Porsche 911 modification advice",
-            "Product recommendations with affiliate links",
-            "Comprehensive FAQ system",
-            "Mobile-optimized chat interface",
-            "Expert tuning guidance"
-          ]
+            "Smart product recommendations with affiliate links",
+            "Comprehensive FAQ system with 25+ expert answers",
+            "Mobile-optimized chat interface with conversation memory",
+            "Expert tuning guidance for all 911 generations",
+            "Installation difficulty ratings and guides",
+            "Budget-based modification planning",
+            "Real-time product price comparisons"
+          ],
+          "audience": {
+            "@type": "Audience",
+            "audienceType": "Porsche 911 owners and enthusiasts"
+          },
+          "creator": {
+            "@type": "Organization",
+            "name": "ModBot 911",
+            "description": "AI-powered automotive modification experts"
+          }
         }}
       />
       <main className="min-h-screen bg-black text-white font-sans">
