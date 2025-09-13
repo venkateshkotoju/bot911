@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Footer() {
   return (
     <footer className="bg-zinc-900 border-t border-zinc-800 mt-16">
@@ -39,10 +41,10 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white mb-4">Resources</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="/faq" className="text-zinc-400 hover:text-white transition-colors">FAQ</a></li>
-              <li><a href="/favorites" className="text-zinc-400 hover:text-white transition-colors">My Favorites</a></li>
-              <li><a href="/compare" className="text-zinc-400 hover:text-white transition-colors">Compare Parts</a></li>
-              <li><a href="/admin" className="text-zinc-400 hover:text-white transition-colors">Admin Panel</a></li>
+              <li><Link href="/faq/" className="text-zinc-400 hover:text-white transition-colors">FAQ</Link></li>
+              <li><Link href="/favorites/" className="text-zinc-400 hover:text-white transition-colors">My Favorites</Link></li>
+              <li><Link href="/compare/" className="text-zinc-400 hover:text-white transition-colors">Compare Parts</Link></li>
+              <li><Link href="/admin/" className="text-zinc-400 hover:text-white transition-colors">Admin Panel</Link></li>
             </ul>
           </div>
 

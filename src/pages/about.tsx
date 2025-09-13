@@ -1,6 +1,7 @@
 import SEO from '../components/SEO';
 import Hero from '../components/sections/Hero';
 import Footer from '../components/sections/Footer';
+import Link from 'next/link';
 
 export default function About() {
   return (
@@ -74,7 +75,7 @@ export default function About() {
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-red-400 mt-1">❌</span>
-                      <span>Conflicting advice from different "experts"</span>
+                      <span>Conflicting advice from different &ldquo;experts&rdquo;</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-red-400 mt-1">❌</span>
@@ -103,9 +104,9 @@ export default function About() {
               </p>
               
               <div className="bg-zinc-900 rounded-lg p-6 mb-6 border border-zinc-800">
-                <h3 className="text-xl font-semibold text-red-400 mb-4">💡 The "Aha" Moment</h3>
+                <h3 className="text-xl font-semibold text-red-400 mb-4">💡 The &ldquo;Aha&rdquo; Moment</h3>
                 <p className="text-zinc-300 italic">
-                  "After spending $300 on a consultation call just to learn which cold air intake would work with my 997.2, I knew there had to be a better way. That's when we decided to build ModBot 911 – democratizing access to expert modification knowledge through AI."
+                  &ldquo;After spending $300 on a consultation call just to learn which cold air intake would work with my 997.2, I knew there had to be a better way. That&apos;s when we decided to build ModBot 911 – democratizing access to expert modification knowledge through AI.&rdquo;
                 </p>
                 <p className="text-sm text-zinc-500 mt-2">- Founder & Lead Developer</p>
               </div>
@@ -128,7 +129,7 @@ export default function About() {
                 <div className="text-4xl mb-4">🤖</div>
                 <h3 className="text-xl font-semibold text-white mb-4">Advanced AI Engine</h3>
                 <p className="text-zinc-400 mb-4">
-                  Powered by OpenAI's GPT-4, our AI has been specifically trained on Porsche 911 modification data, technical specifications, and real-world performance results.
+                  Powered by OpenAI&apos;s GPT-4, our AI has been specifically trained on Porsche 911 modification data, technical specifications, and real-world performance results.
                 </p>
                 <ul className="text-sm text-zinc-500 space-y-1">
                   <li>• Model-specific knowledge (996-992)</li>
@@ -185,19 +186,19 @@ export default function About() {
               <div className="text-left">
                 <h3 className="text-xl font-semibold text-red-400 mb-3">🤝 Community Driven</h3>
                 <p className="text-zinc-300">
-                  ModBot 911 grows stronger with every user interaction. We're building a knowledge base by enthusiasts, for enthusiasts.
+                  ModBot 911 grows stronger with every user interaction. We&apos;re building a knowledge base by enthusiasts, for enthusiasts.
                 </p>
               </div>
               <div className="text-left">
                 <h3 className="text-xl font-semibold text-red-400 mb-3">💡 Innovation</h3>
                 <p className="text-zinc-300">
-                  We're constantly pushing the boundaries of what's possible when you combine automotive expertise with cutting-edge AI.
+                  We&apos;re constantly pushing the boundaries of what&apos;s possible when you combine automotive expertise with cutting-edge AI.
                 </p>
               </div>
               <div className="text-left">
                 <h3 className="text-xl font-semibold text-red-400 mb-3">🔓 Transparency</h3>
                 <p className="text-zinc-300">
-                  No hidden agendas or biased recommendations. We're transparent about how our AI works and why it suggests specific modifications.
+                  No hidden agendas or biased recommendations. We&apos;re transparent about how our AI works and why it suggests specific modifications.
                 </p>
               </div>
             </div>
@@ -208,24 +209,24 @@ export default function About() {
         <section className="py-16 sm:py-20 bg-gradient-to-t from-zinc-900 to-black">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-              Ready to Unlock Your 911's Potential?
+              Ready to Unlock Your 911&apos;s Potential?
             </h2>
             <p className="text-xl text-zinc-300 mb-8 leading-relaxed">
               Join thousands of Porsche enthusiasts who trust ModBot 911 for expert modification advice.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
+              <Link 
                 href="/#chat-section" 
                 className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-all text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 🚀 Start Chatting Now
-              </a>
-              <a 
+              </Link>
+              <Link 
                 href="/faq" 
                 className="px-8 py-4 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 hover:border-zinc-600 text-white rounded-lg transition-all text-lg font-semibold"
               >
                 📚 Browse FAQ
-              </a>
+              </Link>
             </div>
           </div>
         </section>

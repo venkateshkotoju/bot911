@@ -34,7 +34,7 @@ export default function Hero() {
             </h1>
           </Link>
           <p className="text-sm sm:text-base lg:text-lg text-zinc-400 max-w-2xl text-center leading-relaxed">
-            <span className="text-red-400 font-semibold">Unlock your 911's true potential.</span> Get instant expert advice on performance mods, proven product recommendations, and data-driven tuning guidance—all powered by AI and real Porsche expertise.
+            <span className="text-red-400 font-semibold">Unlock your 911&apos;s true potential.</span> Get instant expert advice on performance mods, proven product recommendations, and data-driven tuning guidance—all powered by AI and real Porsche expertise.
           </p>
         </div>
         

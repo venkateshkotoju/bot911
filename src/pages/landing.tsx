@@ -131,7 +131,7 @@ export default function Landing() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-                There's a <span className="text-red-500">Better Way</span> 🎯
+                There&apos;s a <span className="text-red-500">Better Way</span> 🎯
               </h2>
               <p className="text-xl text-zinc-300 max-w-3xl mx-auto">
                 ModBot 911 eliminates the guesswork with AI-powered expert advice tailored to your specific Porsche model and goals.
@@ -309,7 +309,7 @@ export default function Landing() {
             <div className="space-y-6">
               <div className="bg-zinc-900 rounded-lg p-6 border border-zinc-800">
                 <h3 className="text-xl font-bold text-white mb-3">
-                  ❓ How accurate are ModBot 911's recommendations?
+                  ❓ How accurate are ModBot 911&apos;s recommendations?
                 </h3>
                 <p className="text-zinc-400">
                   Our AI is trained on real dyno data, expert knowledge, and thousands of successful builds. We provide actual performance numbers, not marketing claims.
