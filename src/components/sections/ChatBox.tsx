@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SocialShare from '../SocialShare';
 
 interface ChatBoxProps {
@@ -21,11 +21,25 @@ export default function ChatBox({
   clearHistory,
 }: ChatBoxProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const previousMessagesLength = useRef(messages.length);
 
-  // Auto-scroll to bottom when new messages arrive
+  // Auto-scroll to bottom only when new messages are added, not on initial load
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, loading]);
+    // Skip auto-scroll on initial load to prevent page from scrolling down
+    if (isInitialLoad) {
+      setIsInitialLoad(false);
+      previousMessagesLength.current = messages.length;
+      return;
+    }
+
+    // Only scroll if messages were actually added (not just loaded from localStorage)
+    if (messages.length > previousMessagesLength.current) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    previousMessagesLength.current = messages.length;
+  }, [messages, loading, isInitialLoad]);
 
   return (
     <section id="chat" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">

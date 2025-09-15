@@ -13,6 +13,12 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  // Ensure page starts at top on load
+  useEffect(() => {
+    // Scroll to top immediately on component mount
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
+
   useEffect(() => {
     const stored = localStorage.getItem('modbot-chat-history');
     if (stored) {
