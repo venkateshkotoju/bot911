@@ -87,7 +87,7 @@ const ProductGrid = () => {
   return (
     <section className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
       <h2 className="text-2xl font-bold text-white mb-6">
-        Recommended Tools & Upgrades
+        Porsche Performance & Lifestyle Products
         <span className="text-sm font-normal text-zinc-400 ml-2">
           ({sorted.length} {sorted.length === 1 ? 'product' : 'products'})
         </span>

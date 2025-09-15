@@ -187,5 +187,177 @@
     "hotDeal": false,
     "rating": 4.7,
     "price": 129.99
+  },
+  {
+    "id": "porsche-design-sunglasses",
+    "name": "Porsche Design P'8478 Aviator Sunglasses",
+    "keywords": ["porsche design", "sunglasses", "aviator", "eyewear", "luxury sunglasses"],
+    "affiliateUrl": "https://amzn.to/porsche-design-sunglasses",
+    "brand": "Porsche Design",
+    "image": "https://m.media-amazon.com/images/I/71ZqJ8mKBsL._AC_SL1500_.jpg",
+    "category": "Eyewear",
+    "hotDeal": true,
+    "rating": 4.9,
+    "price": 450.00,
+    "description": "🕶️ **The Ultimate Driving Companion** - Authentic Porsche Design P'8478 aviators featuring the legendary interchangeable lens system. These aren't just sunglasses - they're **automotive precision** for your face. With titanium frames and Carl Zeiss lenses, they deliver **crystal-clear vision** and **uncompromising style** that matches your 911's excellence. Perfect for those scenic canyon drives and track day photo ops.",
+    "specifications": {
+      "compatibility": "Universal fit for all Porsche enthusiasts",
+      "features": ["Interchangeable lenses", "Titanium frame", "Carl Zeiss optics", "100% UV protection"]
+    },
+    "installationDifficulty": "Easy",
+    "installationTime": "Instant wear"
+  },
+  {
+    "id": "ray-ban-porsche-edition",
+    "name": "Ray-Ban Porsche Edition Wayfarers",
+    "keywords": ["ray ban", "wayfarers", "porsche edition", "classic sunglasses"],
+    "affiliateUrl": "https://amzn.to/rayban-porsche-edition",
+    "brand": "Ray-Ban",
+    "image": "https://m.media-amazon.com/images/I/61KqA9mVvML._AC_SL1500_.jpg",
+    "category": "Eyewear",
+    "hotDeal": false,
+    "rating": 4.6,
+    "price": 185.00
+  },
+  {
+    "id": "oakley-racing-glasses",
+    "name": "Oakley Racing Jacket Sunglasses",
+    "keywords": ["oakley", "racing jacket", "sport sunglasses", "performance eyewear"],
+    "affiliateUrl": "https://amzn.to/oakley-racing-jacket",
+    "brand": "Oakley",
+    "image": "https://m.media-amazon.com/images/I/71hNpKj8kgL._AC_SL1500_.jpg",
+    "category": "Eyewear",
+    "hotDeal": false,
+    "rating": 4.5,
+    "price": 220.00
+  },
+  {
+    "id": "porsche-design-chronograph",
+    "name": "Porsche Design Chronotimer Series 1",
+    "keywords": ["porsche design", "chronograph", "watch", "timepiece", "luxury watch"],
+    "affiliateUrl": "https://amzn.to/porsche-chronograph",
+    "brand": "Porsche Design",
+    "image": "https://m.media-amazon.com/images/I/81fK9pGqKcL._AC_SL1500_.jpg",
+    "category": "Watches",
+    "hotDeal": true,
+    "rating": 4.8,
+    "price": 2850.00,
+    "description": "⌚ **Time Perfected Like Your Porsche** - The Chronotimer Series 1 embodies the same **precision engineering** that drives your 911. With a Swiss automatic movement and titanium case inspired by Porsche's racing heritage, this isn't just a watch - it's **time measured at racing speed**. Every detail reflects the same obsession with performance that built your car.",
+    "specifications": {
+      "compatibility": "Perfect for any Porsche enthusiast's wrist",
+      "features": ["Swiss automatic movement", "Titanium case", "Chronograph function", "Water resistant 100m"]
+    },
+    "installationDifficulty": "Easy",
+    "installationTime": "Instant wear"
+  },
+  {
+    "id": "tag-heuer-formula1",
+    "name": "TAG Heuer Formula 1 Porsche Edition",
+    "keywords": ["tag heuer", "formula 1", "porsche edition", "racing watch"],
+    "affiliateUrl": "https://amzn.to/tag-heuer-porsche",
+    "brand": "TAG Heuer",
+    "image": "https://m.media-amazon.com/images/I/71mNhJ9QYTL._AC_SL1500_.jpg",
+    "category": "Watches",
+    "hotDeal": false,
+    "rating": 4.7,
+    "price": 1250.00
+  },
+  {
+    "id": "citizen-eco-drive-racing",
+    "name": "Citizen Eco-Drive Racing Chronograph",
+    "keywords": ["citizen", "eco drive", "racing", "chronograph", "solar watch"],
+    "affiliateUrl": "https://amzn.to/citizen-racing-chrono",
+    "brand": "Citizen",
+    "image": "https://m.media-amazon.com/images/I/81kNpRj9QvL._AC_SL1500_.jpg",
+    "category": "Watches",
+    "hotDeal": false,
+    "rating": 4.4,
+    "price": 425.00
+  },
+  {
+    "id": "porsche-design-jacket",
+    "name": "Porsche Design Softshell Racing Jacket",
+    "keywords": ["porsche design", "jacket", "softshell", "racing jacket", "outerwear"],
+    "affiliateUrl": "https://amzn.to/porsche-design-jacket",
+    "brand": "Porsche Design",
+    "image": "https://m.media-amazon.com/images/I/71YtKRm8jQL._AC_SL1500_.jpg",
+    "category": "Jackets",
+    "hotDeal": false,
+    "rating": 4.6,
+    "price": 380.00,
+    "description": "🧥 **Engineered Like Your Porsche** - This isn't just outerwear - it's **performance clothing** designed with the same attention to detail as your 911. Featuring wind-resistant softshell construction and ergonomic racing-inspired design, this jacket delivers **comfort at any speed**. Whether you're at the track or the country club, you'll look as sharp as your car sounds.",
+    "specifications": {
+      "compatibility": "All sizes available for Porsche enthusiasts",
+      "features": ["Wind-resistant", "Breathable fabric", "Racing-inspired design", "Premium construction"]
+    },
+    "installationDifficulty": "Easy",
+    "installationTime": "Instant wear"
+  },
+  {
+    "id": "alpinestars-racing-jacket",
+    "name": "Alpinestars Racing Team Jacket",
+    "keywords": ["alpinestars", "racing jacket", "motorsport", "team jacket"],
+    "affiliateUrl": "https://amzn.to/alpinestars-racing",
+    "brand": "Alpinestars",
+    "image": "https://m.media-amazon.com/images/I/81GfVnKj9HL._AC_SL1500_.jpg",
+    "category": "Jackets",
+    "hotDeal": true,
+    "rating": 4.5,
+    "price": 195.00
+  },
+  {
+    "id": "sparco-track-jacket",
+    "name": "Sparco Track Day Softshell Jacket",
+    "keywords": ["sparco", "track jacket", "softshell", "motorsport apparel"],
+    "affiliateUrl": "https://amzn.to/sparco-track-jacket",
+    "brand": "Sparco",
+    "image": "https://m.media-amazon.com/images/I/71pVbNkQ8xL._AC_SL1500_.jpg",
+    "category": "Jackets",
+    "hotDeal": false,
+    "rating": 4.4,
+    "price": 165.00
+  },
+  {
+    "id": "porsche-signature-fragrance",
+    "name": "Porsche Design The Essence Eau de Toilette",
+    "keywords": ["porsche design", "fragrance", "cologne", "essence", "luxury fragrance"],
+    "affiliateUrl": "https://amzn.to/porsche-essence-fragrance",
+    "brand": "Porsche Design",
+    "image": "https://m.media-amazon.com/images/I/61mVgK9NRBL._AC_SL1500_.jpg",
+    "category": "Fragrances",
+    "hotDeal": false,
+    "rating": 4.3,
+    "price": 85.00,
+    "description": "🌟 **Scent of Success** - Capture the essence of automotive excellence with this sophisticated fragrance inspired by Porsche's legendary design philosophy. Notes of bergamot, cedar, and metallic accords create a scent as distinctive as your 911's exhaust note. Perfect for the driver who demands **perfection in every detail** - from engine bay to cologne bottle.",
+    "specifications": {
+      "compatibility": "Perfect for any Porsche enthusiast",
+      "features": ["Long-lasting formula", "Sophisticated scent profile", "Premium bottle design", "100ml size"]
+    },
+    "installationDifficulty": "Easy",
+    "installationTime": "Instant application"
+  },
+  {
+    "id": "car-air-freshener-leather",
+    "name": "Porsche Leather Scent Car Air Freshener",
+    "keywords": ["car air freshener", "leather scent", "porsche", "interior fragrance"],
+    "affiliateUrl": "https://amzn.to/porsche-leather-freshener",
+    "brand": "Porsche",
+    "image": "https://m.media-amazon.com/images/I/71kRnVjKhpL._AC_SL1500_.jpg",
+    "category": "Fragrances",
+    "hotDeal": true,
+    "rating": 4.5,
+    "price": 25.00
+  },
+  {
+    "id": "chemical-guys-new-car-scent",
+    "name": "Chemical Guys New Car Scent Air Freshener",
+    "keywords": ["chemical guys", "new car scent", "air freshener", "car fragrance"],
+    "affiliateUrl": "https://amzn.to/chemical-guys-new-car",
+    "brand": "Chemical Guys",
+    "image": "https://m.media-amazon.com/images/I/81pVnKj9QHL._AC_SL1500_.jpg",
+    "category": "Fragrances",
+    "hotDeal": false,
+    "rating": 4.2,
+    "price": 15.00
   }
 ]

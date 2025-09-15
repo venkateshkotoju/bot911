@@ -59,7 +59,7 @@ class ProductRecommendationEngine {
     else if (lowerQuery.includes('gt2')) carVariant = 'GT2';
     else if (lowerQuery.includes('carrera')) carVariant = 'Carrera';
 
-    // Extract performance goal
+    // Extract performance goal (expanded for lifestyle products)
     let performanceGoal = '';
     if (lowerQuery.includes('power') || lowerQuery.includes('hp') || lowerQuery.includes('torque')) {
       performanceGoal = 'power';
@@ -67,13 +67,17 @@ class ProductRecommendationEngine {
       performanceGoal = 'handling';
     } else if (lowerQuery.includes('sound') || lowerQuery.includes('exhaust') || lowerQuery.includes('noise')) {
       performanceGoal = 'sound';
+    } else if (lowerQuery.includes('style') || lowerQuery.includes('fashion') || lowerQuery.includes('look') || lowerQuery.includes('appearance')) {
+      performanceGoal = 'style';
+    } else if (lowerQuery.includes('lifestyle') || lowerQuery.includes('accessories') || lowerQuery.includes('gear')) {
+      performanceGoal = 'lifestyle';
     }
 
-    // Extract budget hints
+    // Extract budget hints (updated ranges for lifestyle products)
     let budgetRange = 'medium';
     if (lowerQuery.includes('budget') || lowerQuery.includes('cheap') || lowerQuery.includes('affordable')) {
       budgetRange = 'low';
-    } else if (lowerQuery.includes('premium') || lowerQuery.includes('best') || lowerQuery.includes('top')) {
+    } else if (lowerQuery.includes('premium') || lowerQuery.includes('luxury') || lowerQuery.includes('best') || lowerQuery.includes('top') || lowerQuery.includes('designer')) {
       budgetRange = 'high';
     }
 
@@ -125,7 +129,7 @@ class ProductRecommendationEngine {
       }
     }
 
-    // Performance goal matching
+    // Performance goal matching (updated for lifestyle products)
     if (context.performanceGoal) {
       if (context.performanceGoal === 'power' && product.category === 'ECU') {
         score += 7;
@@ -136,20 +140,43 @@ class ProductRecommendationEngine {
       } else if (context.performanceGoal === 'sound' && product.category === 'Exhaust') {
         score += 7;
         reasons.push('Great for sound enhancement');
+      } else if (context.performanceGoal === 'style' && ['Eyewear', 'Watches', 'Jackets'].includes(product.category)) {
+        score += 7;
+        reasons.push('Perfect for style enhancement');
+      } else if (context.performanceGoal === 'lifestyle' && ['Eyewear', 'Watches', 'Jackets', 'Fragrances'].includes(product.category)) {
+        score += 8;
+        reasons.push('Ideal lifestyle accessory');
       }
     }
 
-    // Budget considerations
+    // Budget considerations (updated for lifestyle products)
     if (context.budgetRange) {
-      if (context.budgetRange === 'low' && product.price <= 200) {
-        score += 5;
-        reasons.push('Budget-friendly option');
-      } else if (context.budgetRange === 'high' && product.price >= 300) {
-        score += 5;
-        reasons.push('Premium quality choice');
-      } else if (context.budgetRange === 'medium' && product.price > 200 && product.price < 300) {
-        score += 5;
-        reasons.push('Great value for money');
+      // For lifestyle products, adjust price ranges
+      const isLifestyleProduct = ['Eyewear', 'Watches', 'Jackets', 'Fragrances'].includes(product.category);
+      
+      if (isLifestyleProduct) {
+        if (context.budgetRange === 'low' && product.price <= 100) {
+          score += 5;
+          reasons.push('Affordable lifestyle choice');
+        } else if (context.budgetRange === 'high' && product.price >= 400) {
+          score += 5;
+          reasons.push('Premium luxury item');
+        } else if (context.budgetRange === 'medium' && product.price > 100 && product.price < 400) {
+          score += 5;
+          reasons.push('Great value lifestyle product');
+        }
+      } else {
+        // Original ranges for performance products
+        if (context.budgetRange === 'low' && product.price <= 200) {
+          score += 5;
+          reasons.push('Budget-friendly option');
+        } else if (context.budgetRange === 'high' && product.price >= 300) {
+          score += 5;
+          reasons.push('Premium quality choice');
+        } else if (context.budgetRange === 'medium' && product.price > 200 && product.price < 300) {
+          score += 5;
+          reasons.push('Great value for money');
+        }
       }
     }
 
@@ -177,9 +204,11 @@ class ProductRecommendationEngine {
       reasons.push('Highly rated product');
     }
 
-    // Brand reputation (subjective scoring)
-    const premiumBrands = ['Cobb', 'Bilstein', 'KW', 'Akrapovič'];
-    if (premiumBrands.includes(product.brand)) {
+    // Brand reputation (expanded for lifestyle brands)
+    const premiumPerformanceBrands = ['Cobb', 'Bilstein', 'KW', 'Akrapovič'];
+    const premiumLifestyleBrands = ['Porsche Design', 'TAG Heuer', 'Ray-Ban', 'Oakley', 'Alpinestars'];
+    
+    if (premiumPerformanceBrands.includes(product.brand) || premiumLifestyleBrands.includes(product.brand)) {
       score += 2;
       reasons.push('Trusted premium brand');
     }
@@ -227,7 +256,9 @@ class ProductRecommendationEngine {
       const goalDescriptions = {
         power: "to increase power output",
         handling: "to improve handling and suspension",
-        sound: "to enhance exhaust sound"
+        sound: "to enhance exhaust sound",
+        style: "to complement your Porsche lifestyle",
+        lifestyle: "for the complete Porsche ownership experience"
       };
       explanation += goalDescriptions[context.performanceGoal as keyof typeof goalDescriptions] + ", ";
     }
