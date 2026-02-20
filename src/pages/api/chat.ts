@@ -8,47 +8,16 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
 });
 
-const SYSTEM_PROMPT = `
-You are a Porsche 911 performance modding expert AND lifestyle advisor — focused on models from 1999 to today (996, 997, 991, 992).
+const SYSTEM_PROMPT = `You are ModBot 911, a performance automotive advisor.
 
-You help owners upgrade their car's power, handling, and sound, PLUS you understand the complete Porsche lifestyle: premium eyewear, luxury watches, racing jackets, and signature fragrances that complement the Porsche ownership experience.
+Explain why the selected products match the user's request.
 
-You speak like a seasoned tuner with refined taste: confident, practical, brutally honest, and with an eye for style that matches automotive excellence.
-
-Your tone is clear, smart, and a bit gearhead with sophistication. You remember previous parts of our conversation and build on them.
-
-When answering:
-- Remember what the user mentioned before in our conversation
-- Ask about their specific 911 model (996/997/991/992) and variant (Turbo/GT3/Carrera) if not mentioned
-- Understand their goals: power gains, handling improvement, sound enhancement, aesthetics, OR lifestyle enhancement
-- Consider their experience level and budget when making suggestions
-- Refer to brands and products using plain text names only (e.g. Bilstein, Fabspeed, Porsche Design, TAG Heuer)
-- For performance: Explain horsepower gains, feel, and risks of mods
-- For lifestyle: Recommend accessories that match the precision and style of their Porsche
-- Compare generations and what to prioritize for each
-- Mention tools, install tips, and what to avoid
-- Reference previous questions or recommendations when relevant
-- Understand that Porsche ownership is about the complete experience: the drive, the style, the statement
-
-Lifestyle categories you understand:
-- Eyewear: Premium sunglasses for driving (Porsche Design, Ray-Ban, Oakley)
-- Watches: Timepieces that match automotive precision (Porsche Design, TAG Heuer, racing chronographs)
-- Jackets: Racing-inspired outerwear (Porsche Design, Alpinestars, Sparco)
-- Fragrances: Scents and car fragrances that complement the luxury experience
-
-STRICT FORMATTING RULES — you MUST follow these without exception:
-- Do NOT use any markdown formatting: no bold (**text**), no italics (*text*), no headers (# or ##), no bullet lists (- or *), no numbered lists, no code blocks, no horizontal rules.
-- Do NOT generate product lists of any kind. Do not enumerate or list multiple products in sequence.
-- Do NOT include any URLs, links, or web addresses in your response.
-- Do NOT use []() link syntax or any other hyperlink formatting.
-- Provide only plain explanation text — continuous prose paragraphs only.
-- Refer to products and brands using their plain text names only, never wrapped in any formatting.
-- The system will automatically display product recommendation cards below your response. Your job is only to provide expert explanation and context in plain prose.
-
-Be helpful, not salesy. Speak from real-world experience. Keep answers to the point but packed with value.
-
-Modding isn't just about parts — it's about doing it right. The Porsche lifestyle isn't just about the car — it's about excellence in every detail. Help them achieve both.
-`;
+Rules:
+Plain prose only
+No markdown
+No URLs
+Do not mention products not provided
+Do not invent variations`;
 
 export type RecommendationProduct = {
   name: string;
@@ -61,41 +30,13 @@ export type RecommendationProduct = {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { query, conversationHistory = [] } = req.body;
+  const { query } = req.body;
 
   if (!query) {
     return res.status(400).json({ error: 'Missing query.' });
   }
 
   try {
-    // Build conversation messages with context
-    const messages = [
-      { role: 'system', content: SYSTEM_PROMPT },
-      // Add previous conversation context (limit to last 6 messages to stay within token limits)
-      ...conversationHistory.slice(-6).map((msg: string) => {
-        if (msg.startsWith('👤 You:')) {
-          return { role: 'user' as const, content: msg.replace('👤 You: ', '') };
-        } else if (msg.startsWith('🚗 ModBot 911:')) {
-          return { role: 'assistant' as const, content: msg.replace('🚗 ModBot 911: ', '') };
-        }
-        return null;
-      }).filter(Boolean),
-      // Add current query
-      { role: 'user' as const, content: query },
-    ];
-
-    const chatResponse = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
-      messages: messages.filter(Boolean) as Array<{ role: 'system' | 'user' | 'assistant'; content: string }>,
-      temperature: 0.7,
-      max_tokens: 500,
-    });
-
-    const rawReply = chatResponse.choices[0]?.message?.content || '';
-
-    // Strip any markdown link formatting [text](url) → plain text only
-    const reply = rawReply.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
-
     // 🧠 SMART RECOMMENDATION LOGIC
     // Get intelligent product recommendations based on the query
     const { recommendations, explanation } = recommendationEngine.getSmartRecommendations(query, 3);
@@ -114,6 +55,52 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         installationTime: product.installationTime ?? null,
       }));
     }
+
+    // Build product context — names only, no descriptions, no JSON, no full objects
+    const productNames = structuredRecommendations.map((p) => p.name).join(', ');
+    const productContext = productNames.length > 0
+      ? `Selected Products: ${productNames}`
+      : '';
+
+    // Compose the full system message
+    const fullSystemMessage = productContext
+      ? `${SYSTEM_PROMPT}\n\n${productContext}`
+      : SYSTEM_PROMPT;
+
+    // ── Prompt size diagnostics ──────────────────────────────────────────────
+    const systemPromptChars = SYSTEM_PROMPT.length;
+    const productContextChars = productContext.length;
+    const userQueryChars = query.length;
+    const combinedSystemChars = fullSystemMessage.length;
+    const totalChars = combinedSystemChars + userQueryChars;
+    const estimatedTokens = Math.ceil(totalChars / 4);
+
+    console.log('[chat.ts] Prompt diagnostics:');
+    console.log(`  SYSTEM_PROMPT chars       : ${systemPromptChars}`);
+    console.log(`  productContext chars       : ${productContextChars}`);
+    console.log(`  user query chars          : ${userQueryChars}`);
+    console.log(`  combined system msg chars : ${combinedSystemChars}`);
+    console.log(`  total chars sent          : ${totalChars}`);
+    console.log(`  estimated tokens (~÷4)    : ${estimatedTokens}`);
+    // ────────────────────────────────────────────────────────────────────────
+
+    // Messages array: ONLY one system message + one user message
+    const messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }> = [
+      { role: 'system', content: fullSystemMessage },
+      { role: 'user', content: query },
+    ];
+
+    const chatResponse = await openai.chat.completions.create({
+      model: 'gpt-3.5-turbo',
+      messages,
+      temperature: 0.4,
+      max_tokens: 300,
+    });
+
+    const rawReply = chatResponse.choices[0]?.message?.content || '';
+
+    // Strip any markdown link formatting [text](url) → plain text only
+    const reply = rawReply.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
 
     res.status(200).json({
       reply,
