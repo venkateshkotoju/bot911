@@ -94,7 +94,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     ];
 
     const chatResponse = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-4o-mini',
       messages: messages.filter(Boolean) as Array<{ role: 'system' | 'user' | 'assistant'; content: string }>,
       temperature: 0.7,
       max_tokens: 500,
