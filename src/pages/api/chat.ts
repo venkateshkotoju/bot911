@@ -84,7 +84,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       max_tokens: 500,
     });
 
-    const reply = chatResponse.choices[0]?.message?.content || '';
+    const rawReply = chatResponse.choices[0]?.message?.content || '';
+
+    // Strip any markdown link formatting [text](url) → plain text only
+    const reply = rawReply.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
 
     // 🧠 SMART RECOMMENDATION LOGIC
     // Get intelligent product recommendations based on the query
