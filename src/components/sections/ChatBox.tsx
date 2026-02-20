@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SocialShare from '../SocialShare';
+import type { ChatMessage } from '@/pages/index';
 
 interface ChatBoxProps {
   input: string;
   setInput: (value: string) => void;
-  messages: string[];
+  messages: ChatMessage[];
   error: string | null;
   loading: boolean;
   sendMessage: () => void;
@@ -26,18 +27,16 @@ export default function ChatBox({
 
   // Auto-scroll to bottom only when new messages are added, not on initial load
   useEffect(() => {
-    // Skip auto-scroll on initial load to prevent page from scrolling down
     if (isInitialLoad) {
       setIsInitialLoad(false);
       previousMessagesLength.current = messages.length;
       return;
     }
 
-    // Only scroll if messages were actually added (not just loaded from localStorage)
     if (messages.length > previousMessagesLength.current) {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
-    
+
     previousMessagesLength.current = messages.length;
   }, [messages, loading, isInitialLoad]);
 
@@ -80,21 +79,21 @@ export default function ChatBox({
               </div>
             </div>
           )}
-          
+
           {messages.map((msg, idx) => {
-            const isUser = msg.startsWith('👤');
-            const cleanMsg = msg.replace(/^(👤 You: |🚗 ModBot 911: )/, '');
-            
-            // Check if bot message contains product recommendations (contains links)
-            const hasProductLinks = !isUser && cleanMsg.includes('[') && cleanMsg.includes('](');
-            
+            const isUser = msg.role === 'user';
+            const hasRecommendations =
+              !isUser &&
+              Array.isArray(msg.recommendations) &&
+              msg.recommendations.length > 0;
+
             return (
               <div
                 key={idx}
                 className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[80%] p-3 rounded-lg text-sm whitespace-pre-wrap ${
+                  className={`max-w-[85%] p-3 rounded-lg text-sm whitespace-pre-wrap ${
                     isUser
                       ? 'bg-red-600 text-white rounded-br-sm'
                       : 'bg-zinc-700 text-white rounded-bl-sm'
@@ -106,20 +105,57 @@ export default function ChatBox({
                         <span>🚗</span>
                         <span className="font-semibold">ModBot 911</span>
                       </div>
-                      
+
                       {/* Social Share for product recommendations */}
-                      {hasProductLinks && (
+                      {hasRecommendations && (
                         <SocialShare
                           productName="Porsche 911 Mod Recommendation"
                           productUrl={`${window.location.origin}/#chat`}
-                          recommendationText={cleanMsg.substring(0, 100) + (cleanMsg.length > 100 ? '...' : '')}
+                          recommendationText={msg.text.substring(0, 100) + (msg.text.length > 100 ? '...' : '')}
                         />
                       )}
                     </div>
                   )}
-                  <div className={isUser ? 'text-right' : ''}>
-                    {cleanMsg}
-                  </div>
+
+                  {/* Message text */}
+                  <div className={isUser ? 'text-right' : ''}>{msg.text}</div>
+
+                  {/* Product recommendation cards */}
+                  {hasRecommendations && (
+                    <div className="mt-3 space-y-2">
+                      <p className="text-xs font-semibold text-zinc-300 uppercase tracking-wide">
+                        💡 Smart Recommendations
+                      </p>
+                      {msg.recommendations!.map((product, pIdx) => (
+                        <div
+                          key={pIdx}
+                          className="bg-zinc-800 border border-zinc-600 rounded-lg p-3 space-y-1"
+                        >
+                          <a
+                            href={product.affiliateUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-red-400 hover:text-red-300 font-semibold text-sm underline underline-offset-2 transition-colors"
+                          >
+                            {product.name}
+                          </a>
+                          <div className="flex flex-wrap gap-3 text-xs text-zinc-400">
+                            <span>💰 ${product.price}</span>
+                            <span>⭐ {product.rating}/5</span>
+                            {product.installationTime && (
+                              <span>🔧 {product.installationTime}</span>
+                            )}
+                          </div>
+                          {product.reason && (
+                            <p className="text-xs text-zinc-400">✅ {product.reason}</p>
+                          )}
+                          {product.gains && (
+                            <p className="text-xs text-zinc-300">🚀 {product.gains}</p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             );
@@ -134,16 +170,16 @@ export default function ChatBox({
                 </div>
                 <div className="flex items-center gap-1 text-zinc-400">
                   <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce" style={{animationDelay: '0ms'}}></div>
-                    <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce" style={{animationDelay: '150ms'}}></div>
-                    <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce" style={{animationDelay: '300ms'}}></div>
+                    <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                    <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                    <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
                   </div>
                   <span className="ml-2 text-xs">Thinking...</span>
                 </div>
               </div>
             </div>
           )}
-          
+
           <div ref={messagesEndRef} />
         </div>
 
