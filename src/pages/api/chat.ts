@@ -1,7 +1,6 @@
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { OpenAI } from 'openai';
-import products from '@/data/products.json';
 import { recommendationEngine } from '@/lib/recommendationEngine';
 
 
@@ -37,12 +36,22 @@ Lifestyle categories you understand:
 - Jackets: Racing-inspired outerwear (Porsche Design, Alpinestars, Sparco)
 - Fragrances: Scents and car fragrances that complement the luxury experience
 
-IMPORTANT: Keep your response focused and concise. The system will automatically add smart product recommendations based on the user's query, so you don't need to list specific products - focus on providing expert advice and context.
+IMPORTANT: Keep your response focused and concise. Do NOT include product names wrapped in markdown links or any []() formatting. The system will automatically add smart product recommendation cards below your response — just provide expert advice and context in plain text.
 
 Be helpful, not salesy. Speak from real-world experience. Keep answers to the point but packed with value.
 
 Modding isn't just about parts — it's about doing it right. The Porsche lifestyle isn't just about the car — it's about excellence in every detail. Help them achieve both.
 `;
+
+export type RecommendationProduct = {
+  name: string;
+  affiliateUrl: string;
+  price: number;
+  rating: number;
+  reason: string;
+  gains: string | null;
+  installationTime: string | null;
+};
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { query, conversationHistory = [] } = req.body;
@@ -67,67 +76,43 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Add current query
       { role: 'user' as const, content: query },
     ];
+
     const chatResponse = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: messages.filter(Boolean) as Array<{ role: 'system' | 'user' | 'assistant'; content: string }>,
       temperature: 0.7,
-      max_tokens: 500, // Limit response length
+      max_tokens: 500,
     });
 
-    let reply = chatResponse.choices[0]?.message?.content || '';
+    const rawReply = chatResponse.choices[0]?.message?.content || '';
+
+    // Strip any markdown link formatting [text](url) → plain text only
+    const reply = rawReply.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
 
     // 🧠 SMART RECOMMENDATION LOGIC
     // Get intelligent product recommendations based on the query
     const { recommendations, explanation } = recommendationEngine.getSmartRecommendations(query, 3);
-    
-    // If we have good recommendations, enhance the AI response
+
+    // Build structured recommendation objects (no markdown formatting)
+    let structuredRecommendations: RecommendationProduct[] = [];
+
     if (recommendations.length > 0 && recommendations[0].relevanceScore > 5) {
-      // Append smart recommendations to the AI response
-      reply += `\n\n${explanation}`;
-      
-      // Add a separator for better formatting
-      reply += "\n\n---\n\n💡 **Smart Recommendations:**\n";
-      
-      recommendations.forEach((product, index) => {
-        reply += `\n${index + 1}. **${product.name}** - Perfect match! (Score: ${product.relevanceScore})\n`;
-        reply += `   💰 $${product.price} | ⭐ ${product.rating}/5 | 🏷️ ${product.brand}\n`;
-        
-        if (product.matchReasons.length > 0) {
-          reply += `   ✅ ${product.matchReasons.slice(0, 3).join(' • ')}\n`;
-        }
-        
-        // Add power gains if available
-        if (product.specifications?.powerGains) {
-          reply += `   🚀 Expected gains: ${product.specifications.powerGains}\n`;
-        }
-        
-        // Add installation info
-        if (product.installationDifficulty) {
-          reply += `   🔧 Installation: ${product.installationDifficulty}`;
-          if (product.installationTime) {
-            reply += ` (${product.installationTime})`;
-          }
-          reply += "\n";
-        }
-      });
+      structuredRecommendations = recommendations.map((product) => ({
+        name: product.name,
+        affiliateUrl: product.affiliateUrl,
+        price: product.price,
+        rating: product.rating,
+        reason: product.matchReasons.slice(0, 3).join(' • '),
+        gains: product.specifications?.powerGains ?? null,
+        installationTime: product.installationTime ?? null,
+      }));
     }
 
-    // Original affiliate link injection (now enhanced with smart recommendations)
-    for (const product of products) {
-      for (const keyword of product.keywords) {
-        const regex = new RegExp(`\\b(${keyword})\\b`, 'gi');
-        reply = reply.replace(regex, `[${product.name}](${product.affiliateUrl})`);
-      }
-    }
-    
-    // Also inject links for smart recommendations
-    for (const recommendation of recommendations) {
-      const productName = recommendation.name;
-      const regex = new RegExp(`\\b(${productName})\\b`, 'gi');
-      reply = reply.replace(regex, `[${productName}](${recommendation.affiliateUrl})`);
-    }
-
-    res.status(200).json({ reply });
+    res.status(200).json({
+      reply,
+      recommendations: structuredRecommendations,
+      explanation: structuredRecommendations.length > 0 ? explanation : null,
+    });
   } catch (error: unknown) {
     console.error('GPT error:', error);
 
