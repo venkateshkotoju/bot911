@@ -77,9 +77,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
+    // 🧠 SMART RECOMMENDATION LOGIC — run BEFORE OpenAI call so product names can be injected into the prompt
+    const { recommendations, explanation } = recommendationEngine.getSmartRecommendations(query, 3);
+
+    // Build the dynamic product context block to inject into the system prompt
+    let productContext = '';
+    if (recommendations.length > 0 && recommendations[0].relevanceScore > 5) {
+      const productList = recommendations
+        .map((p) => `- ${p.name}`)
+        .join('\n');
+      productContext = `\n\nAVAILABLE RECOMMENDED PRODUCTS FOR THIS QUERY:\n${productList}\nOnly explain and discuss these specific products. Do NOT reference any other products or variations.`;
+    }
+
     // Build conversation messages with context
     const messages = [
-      { role: 'system', content: SYSTEM_PROMPT },
+      { role: 'system', content: SYSTEM_PROMPT + productContext },
       // Add previous conversation context (limit to last 6 messages to stay within token limits)
       ...conversationHistory.slice(-6).map((msg: string) => {
         if (msg.startsWith('👤 You:')) {
@@ -104,10 +116,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Strip any markdown link formatting [text](url) → plain text only
     const reply = rawReply.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
-
-    // 🧠 SMART RECOMMENDATION LOGIC
-    // Get intelligent product recommendations based on the query
-    const { recommendations, explanation } = recommendationEngine.getSmartRecommendations(query, 3);
 
     // Build structured recommendation objects (no markdown formatting)
     let structuredRecommendations: RecommendationProduct[] = [];
